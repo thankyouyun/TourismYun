@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_home"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/action_plus"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="ADD" />
+
+    <item
+        android:id="@+id/action_my"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="MyPage" />
+
+    <item
+        android:id="@+id/action_recent"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_slideshow"
+        android:title="recent" />
+
+
+
+</menu>
