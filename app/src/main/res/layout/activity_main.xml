@@ -1,62 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.goodyun.tourismyun.MainActivity">
 
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
 
-        </android.support.v7.widget.Toolbar>
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.Appbar">
 
-    </android.support.design.widget.AppBarLayout>
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:clickable="true"
+                    app:layout_scrollFlags="scroll|enterAlways" />
 
-    <RelativeLayout
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/layout_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#2196f3"
+                    app:layout_scrollFlags="exitUntilCollapsed"
+                    app:tabIndicatorColor="#29434e"
+                    app:tabTextColor="@color/white">
+
+                </android.support.design.widget.TabLayout>
+
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8">
+
+            </android.support.v4.view.ViewPager>
+
+
+
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:itemBackground="@color/colorTabbar"
+            app:itemIconTint="#FFFFFF"
+            app:itemTextColor="#FFFFFF"
+            app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
+            app:menu="@menu/bottom_nav">
+
+        </android.support.design.widget.BottomNavigationView>
+
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorTabbar"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_menu">
+
+    </android.support.design.widget.NavigationView>
 
 
-        <android.support.v4.widget.DrawerLayout
-            android:id="@+id/layout_drawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-        </android.support.v4.widget.DrawerLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v4.view.ViewPager>
-
-    </RelativeLayout>
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/colorPrimaryDark"
-        app:itemIconTint="#ffffff"
-        app:itemTextColor="#ffffff"
-        app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
-        app:menu="@menu/bottom_nav">
-
-    </android.support.design.widget.BottomNavigationView>
-
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

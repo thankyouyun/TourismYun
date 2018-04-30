@@ -1,6 +1,8 @@
 package com.goodyun.tourismyun;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -9,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
 
 
-        getSupportActionBar().setTitle("관광하자");
+        getSupportActionBar().setTitle("하이");
         tabLayout = findViewById(R.id.layout_tab);
         pager = findViewById(R.id.pager);
         adapter = new MainPageAdapter(getSupportFragmentManager());
@@ -80,7 +83,44 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+        //바텀네비게이션뷰
+        bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+
     }//onCreate
 
+    BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener=new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Intent intent;
+
+            switch (item.getItemId()) {
+                case R.id.action_home:
+
+                    return true;
+
+                case R.id.action_plus:
+                    intent = new Intent(MainActivity.this, RoadActivity.class);
+                    startActivity(intent);
+                    return true;
+
+                case R.id.action_my:
+                    intent = new Intent(MainActivity.this, MyPageActivity.class);
+                    startActivity(intent);
+                    return true;
+
+                case R.id.action_recent:
+                    intent = new Intent(MainActivity.this, RecentActivity.class);
+                    startActivity(intent);
+
+                    return true;
+
+            }//switch
+            return true;
+        }
+
+    };
 
 }

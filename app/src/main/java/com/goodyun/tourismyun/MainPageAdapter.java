@@ -12,7 +12,7 @@ public class MainPageAdapter extends FragmentPagerAdapter {
 
     public MainPageAdapter(FragmentManager fm) {
         super(fm);
-        frags[0] = new MainPage1Fragment();
+        frags[0] = new MainPage1Frag();
         frags[1] = new MainPage2Fragment();
         frags[2] = new MainPage3Fragment();
 

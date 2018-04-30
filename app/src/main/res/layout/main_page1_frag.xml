@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+                android:id="@+id/auto_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+            </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
+
+
+            <fragment
+                android:id="@+id/best_fragment"
+                android:name="com.goodyun.tourismyun.MainPage1FragMiddleFragment"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                tools:layout="@layout/main_page1_frag_middle_fragment" />
+
+
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/recycler"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#dddddd"-->
+                <!--android:orientation="vertical"-->
+                <!--android:padding="16dp"-->
+                <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager">-->
+
+
+            <!--</android.support.v7.widget.RecyclerView>-->
+
+
+            <fragment
+                android:id="@+id/new_fragment"
+                android:name="com.goodyun.tourismyun.MainPage1UnderFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/main_page_frag_under_fragment" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
