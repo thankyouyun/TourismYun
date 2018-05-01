@@ -19,6 +19,7 @@
         <item name="colorPrimary">@color/colorToolbar</item>
         <item name="colorPrimaryDark">@color/colorTabbar</item>
         <item name="titleTextColor">#000000</item>
+
     </style>
 
 </resources>

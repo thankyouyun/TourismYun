@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context="com.goodyun.tourismyun.MainActivity">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bottom_nav"
+            android:orientation="vertical">
 
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/appber"
@@ -26,8 +28,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:clickable="true"
-                    app:layout_scrollFlags="scroll|enterAlways" />
+                    app:layout_scrollFlags="scroll|enterAlways">
 
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="match_parent"
+                            android:baselineAlignBottom="false"
+                            android:clickable="true"
+                            android:onClick="clickLogo"
+                            android:src="@drawable/yunsoft" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAlignBottom="false"
+                            android:clickable="true"
+                            android:onClick="clickSearch"
+                            android:src="@android:drawable/ic_menu_search" />
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.Toolbar>
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/layout_tab"
@@ -38,6 +64,7 @@
                     app:tabIndicatorColor="#29434e"
                     app:tabTextColor="@color/white">
 
+
                 </android.support.design.widget.TabLayout>
 
 
@@ -46,19 +73,17 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="8">
+                android:layout_height="wrap_content">
 
             </android.support.v4.view.ViewPager>
 
-
-
+        </LinearLayout>
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_alignParentBottom="true"
             app:itemBackground="@color/colorTabbar"
             app:itemIconTint="#FFFFFF"
             app:itemTextColor="#FFFFFF"
@@ -66,10 +91,7 @@
             app:menu="@menu/bottom_nav">
 
         </android.support.design.widget.BottomNavigationView>
-
-
-    </LinearLayout>
-
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav"
@@ -82,5 +104,7 @@
 
     </android.support.design.widget.NavigationView>
 
-
 </android.support.v4.widget.DrawerLayout>
+
+
+

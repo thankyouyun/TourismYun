@@ -16,12 +16,40 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
-                android:id="@+id/auto_view"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="240dp">
 
-            </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
+                <TextView
+                    android:id="@+id/tv_best_z"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:background="#73e8ff"
+                    android:paddingLeft="16dp"
+                    android:text="Best 코스"
+                    android:textColor="#333333"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+                    android:id="@+id/auto_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_below="@id/tv_best_z">
+
+                </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
+
+                <TextView
+                    android:id="@+id/best_tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="1/10"
+                    android:textColor="#777777"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
 
             <fragment
@@ -33,16 +61,26 @@
 
 
             <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/recycler"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="#dddddd"-->
-                <!--android:orientation="vertical"-->
-                <!--android:padding="16dp"-->
-                <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager">-->
+            <!--android:id="@+id/recycler"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#dddddd"-->
+            <!--android:orientation="vertical"-->
+            <!--android:padding="16dp"-->
+            <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager">-->
 
 
             <!--</android.support.v7.widget.RecyclerView>-->
+            <TextView
+                android:id="@+id/tv_new_z"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="#73e8ff"
+                android:paddingLeft="16dp"
+                android:text="신규 코스"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
 
             <fragment
@@ -51,7 +89,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/main_page_frag_under_fragment" />
-
 
 
         </LinearLayout>

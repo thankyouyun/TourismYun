@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.goodyun.tourismyun.SeachActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/ic_menu_revert"
+        android:clickable="true"
+        android:onClick="clickback"
+        />
+
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="48dp"
+       android:layout_toRightOf="@id/img_back"
+       android:src="@drawable/intro_back"
+       android:scaleType="centerCrop"
+       />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_toRightOf="@id/img_back"
+        android:hint="검색어를 입력하세요"
+        android:textStyle="bold"
+        />
+
+
+</RelativeLayout>

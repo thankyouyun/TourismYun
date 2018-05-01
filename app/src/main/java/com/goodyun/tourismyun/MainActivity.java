@@ -15,6 +15,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav);
         navigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
+
+
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
 
         drawerToggle.syncState();
@@ -61,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
 
     }//onCreate
 
+
+    public void clickLogo(View v){
+
+
+    }
+    public void clickSearch(View v){
+
+        startActivity(new Intent(MainActivity.this,SeachActivity.class));
+        overridePendingTransition(R.anim.appear_search,R.anim.appear_search);
+    }
 
     //네이게이션뷰리스너
     NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
@@ -82,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
+                   
                     builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -203,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.action_my:
-                    
+
                     return true;
 
                 case R.id.action_recent:

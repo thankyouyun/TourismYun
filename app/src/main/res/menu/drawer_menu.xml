@@ -2,18 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_no1"
-        android:title="마이페이지"
-
+        android:title="가이드북링크"
+        android:icon="@android:drawable/ic_menu_upload"
         />
 
     <item android:id="@+id/menu_no2"
-        android:title="최근기록"
+        android:title="관광통역안내소'1330'연결"
 
+        android:icon="@android:drawable/ic_menu_call"
         />
     <item android:id="@+id/menu_no3"
-        android:title="건의사항"
+        android:title="서울여행 필수정보링크"
         android:icon="@android:drawable/ic_menu_gallery"
         />
+    <item android:id="@+id/menu_no4"
+        android:title="환경설정"
+        android:icon="@android:drawable/ic_menu_preferences"
+        />
+    <item android:id="@+id/menu_no5"
+        android:title="나가기"
+        android:icon="@android:drawable/ic_lock_power_off"/>
 
 
 
