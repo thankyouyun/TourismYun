@@ -24,7 +24,7 @@ public class IntroActivity extends AppCompatActivity {
         Animation ani = AnimationUtils.loadAnimation(this,R.anim.appear_logo);
         iv.startAnimation(ani);
 
-        timer.schedule(task,4000);
+        timer.schedule(task,1000);
 
 
 
