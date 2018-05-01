@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     DrawerLayout drawerLayout;
-    NavigationView navigationView;
     BottomNavigationView bottomNavigationView;
     ActionBarDrawerToggle drawerToggle;
+    NavigationView navigationView;
     TabLayout tabLayout;
     Toolbar toolbar;
     ViewPager pager;
@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.layout_drawer);
+
         navigationView = findViewById(R.id.nav);
         navigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
-
-
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+
 
         drawerToggle.syncState();
 
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-                   
+
                     builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -201,6 +201,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };//navigation
+
+
+
 
     BottomNavigationView.OnNavigationItemSelectedListener onBottomNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

@@ -28,6 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:clickable="true"
+                    app:contentInsetStart="0dp"
                     app:layout_scrollFlags="scroll|enterAlways">
 
                     <LinearLayout
@@ -35,13 +36,15 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
+
                         <ImageView
                             android:layout_width="120dp"
                             android:layout_height="match_parent"
                             android:baselineAlignBottom="false"
                             android:clickable="true"
                             android:onClick="clickLogo"
-                            android:src="@drawable/yunsoft" />
+                            android:src="@drawable/logo"
+                            android:layout_marginRight="24dp"/>
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -49,7 +52,7 @@
                             android:baselineAlignBottom="false"
                             android:clickable="true"
                             android:onClick="clickSearch"
-                            android:src="@android:drawable/ic_menu_search" />
+                            android:src="@drawable/search" />
                     </LinearLayout>
 
 
@@ -98,9 +101,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/colorTabbar"
+        android:background="#90a4ae"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/drawer_menu">
+        app:menu="@menu/drawer_menu"
+        >
 
     </android.support.design.widget.NavigationView>
 
