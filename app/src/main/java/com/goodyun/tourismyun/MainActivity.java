@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void clickLogo(View v){
-
+        pager.setCurrentItem(0);
 
     }
     public void clickSearch(View v){
@@ -212,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.action_home:
 
+                    pager.setCurrentItem(0);
                     return true;
 
                 case R.id.action_plus:
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.action_my:
-
+fhgrhergeg
                     return true;
 
                 case R.id.action_recent:
