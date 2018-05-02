@@ -1,114 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_drawer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.goodyun.tourismyun.MainActivity">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/bottom_nav"
-            android:orientation="vertical">
-
-            <android.support.design.widget.AppBarLayout
-                android:id="@+id/appber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.Appbar">
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:clickable="true"
-                    app:contentInsetStart="0dp"
-                    app:layout_scrollFlags="scroll|enterAlways">
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:baselineAlignBottom="false"
-                            android:clickable="true"
-                            android:onClick="clickLogo"
-                            android:src="@drawable/logo"
-                            android:layout_marginRight="24dp"/>
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:baselineAlignBottom="false"
-                            android:clickable="true"
-                            android:onClick="clickSearch"
-                            android:src="@drawable/search" />
-                    </LinearLayout>
-
-
-                </android.support.v7.widget.Toolbar>
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/layout_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#2196f3"
-                    app:layout_scrollFlags="exitUntilCollapsed"
-                    app:tabIndicatorColor="#29434e"
-                    app:tabTextColor="@color/white">
-
-
-                </android.support.design.widget.TabLayout>
-
-
-            </android.support.design.widget.AppBarLayout>
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v4.view.ViewPager>
-
-        </LinearLayout>
-
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_nav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@color/colorTabbar"
-            app:itemIconTint="#FFFFFF"
-            app:itemTextColor="#FFFFFF"
-            app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
-            app:menu="@menu/bottom_nav">
-
-        </android.support.design.widget.BottomNavigationView>
-    </RelativeLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav"
+    <LinearLayout
+        android:id="@+id/change"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/colorTabbar"
-        app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/drawer_menu"
-        >
+        android:layout_above="@id/bottom_nav"
+        android:orientation="vertical">
 
-    </android.support.design.widget.NavigationView>
+    </LinearLayout>
 
-</android.support.v4.widget.DrawerLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorTabbar"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
+        app:menu="@menu/bottom_nav">
+
+    </android.support.design.widget.BottomNavigationView>
+
+
+</RelativeLayout>
 
 
 
