@@ -1,8 +1,8 @@
 package com.goodyun.tourismyun;
 
 public class Items {
-    int imgId;      //R.drawable.korea
-    String name;    //"전현무"
+    int imgId;      
+    String name;    
     String nation;
 
     public Items(int imgId, String name, String nation) {

@@ -20,11 +20,11 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        iv =findViewById(R.id.yun_soft);
+        iv =findViewById(R.id.logo);
         Animation ani = AnimationUtils.loadAnimation(this,R.anim.appear_logo);
         iv.startAnimation(ani);
 
-        timer.schedule(task,1000);
+        timer.schedule(task,4000);
 
 
 

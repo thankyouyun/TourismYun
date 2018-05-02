@@ -22,7 +22,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RoadActivity"/>
         <activity android:name=".RecentActivity" />
-        <activity android:name=".SeachActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

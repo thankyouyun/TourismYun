@@ -4,22 +4,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
-public class MainPage2FragAdapter extends BaseAdapter {
+public class SearchReadAdapter extends BaseAdapter {
 
-    ArrayList<Items> items;
+
+    ArrayList<SearchReadItem> items;
     LayoutInflater inflater;
 
-    public MainPage2FragAdapter(ArrayList<Items> members, LayoutInflater inflater) {
-        this.items = members;
+    public SearchReadAdapter(ArrayList<SearchReadItem> items, LayoutInflater inflater) {
+        this.items = items;
         this.inflater = inflater;
     }
-
-
 
     @Override
     public int getCount() {
@@ -39,17 +38,15 @@ public class MainPage2FragAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         if( view == null ){
-            view = inflater.inflate(R.layout.main_page2_listview, null);
+            //new View
+            view = inflater.inflate(R.layout.search_list_item, null);
         }
-        Items item= items.get(position);
+        SearchReadItem item = items.get(position);
+        TextView tvRead = view.findViewById(R.id.tv_read);
+        TextView tvDate = view.findViewById(R.id.tv_date);
 
-        ImageView iv= view.findViewById(R.id.item_img);
-        TextView tvName= view.findViewById(R.id.item_tv_name);
-        TextView tvNation= view.findViewById(R.id.item_tv_subtitle);
-
-        iv.setImageResource(item.imgId);
-        tvName.setText(item.name);
-        tvNation.setText(item.nation);
+        tvRead.setText(item.read);
+        tvDate.setText(item.date);
 
         return view;
     }

@@ -101,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#90a4ae"
+        android:background="@color/colorTabbar"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu"
         >

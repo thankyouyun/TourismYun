@@ -8,18 +8,20 @@
     tools:context="com.goodyun.tourismyun.IntroActivity">
 
     <ImageView
-        android:id="@+id/yun_soft"
+        android:id="@+id/logo"
         android:layout_width="220dp"
         android:layout_height="100dp"
-        android:src="@drawable/yunsoft"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="213dp"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="200dp"
         android:layout_height="32dp"
-        android:text="2018.3.29 Made by 김승윤"
+        android:text="2018 Made by 김승윤"
         android:textSize="16sp"
-        android:textColor="#e0e0e0"
+        android:textColor="#222222"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:gravity="center"/>

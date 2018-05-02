@@ -25,16 +25,16 @@ public class MainPage2Fragment extends Fragment {
 
 
 
-        members.add(new Items(R.drawable.korea,"김승윤","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤2","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤3","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤4","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤5","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤6","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤7","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤8","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤9","한국"));
-        members.add(new Items(R.drawable.korea,"김승윤0","한국"));
+        members.add(new Items(R.drawable.korea,"김승윤","서울 성북구"));
+        members.add(new Items(R.drawable.korea,"김승윤2","서울 도봉구"));
+        members.add(new Items(R.drawable.korea,"김승윤3","서울 노원구"));
+        members.add(new Items(R.drawable.korea,"김승윤4","서울 중구"));
+        members.add(new Items(R.drawable.korea,"김승윤5","서울 강남구"));
+        members.add(new Items(R.drawable.korea,"김승윤6","서울 강동구"));
+        members.add(new Items(R.drawable.korea,"김승윤7","서울 강서구"));
+        members.add(new Items(R.drawable.korea,"김승윤8","서울 동대문구"));
+        members.add(new Items(R.drawable.korea,"김승윤9","서울 성동구"));
+        members.add(new Items(R.drawable.korea,"김승윤0","서울 강북구"));
 
 
 

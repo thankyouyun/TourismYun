@@ -88,7 +88,7 @@
                 android:name="com.goodyun.tourismyun.MainPage1UnderFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/main_page_frag_under_fragment" />
+                tools:layout="@layout/main_page1_frag_under_fragment" />
 
 
         </LinearLayout>

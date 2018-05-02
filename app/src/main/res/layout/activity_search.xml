@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.goodyun.tourismyun.SearchActivity">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:clickable="true"
+        android:onClick="clickback"
+        android:src="@android:drawable/ic_menu_revert" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_toRightOf="@id/img_back"
+        android:scaleType="centerCrop"
+        android:src="@drawable/searchback" />
+
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/control" />
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/img_back"
+        android:hint="검색어를 입력하세요"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:imeOptions="actionSearch"/>
+
+    <TextView
+        android:id="@+id/tv_read_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/img_back"
+        android:clickable="true"
+        android:text="최근검색어"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_below="@id/tv_read_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_empty_list"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:text="NO DATA"
+                android:textStyle="bold"
+                android:textColor="#888888"
+                android:gravity="center"
+                android:visibility="gone"/>
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:stackFromBottom="true"
+                />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>
