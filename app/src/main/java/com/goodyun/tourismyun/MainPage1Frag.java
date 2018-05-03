@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -32,12 +33,14 @@ public class MainPage1Frag extends Fragment {
     TextView tvcount;
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_page1_frag, container, false);
-
         tvcount = view.findViewById(R.id.best_tv_count);
+
+        viewPager = (AutoScrollViewPager) view.findViewById(R.id.auto_view);
 
 
         final ArrayList<String> items = new ArrayList<>();
@@ -45,8 +48,9 @@ public class MainPage1Frag extends Fragment {
         items.add("승윤2");
         items.add("승윤3");
         items.add("승윤4");
+        items.add("승윤5");
 
-        viewPager = (AutoScrollViewPager) view.findViewById(R.id.auto_view);
+
         bestViewAdapter = new MainPage1FragBestViewAdapter(getActivity().getApplicationContext(), items);
         viewPager.setAdapter(bestViewAdapter);
         viewPager.setInterval(3000);
@@ -56,29 +60,24 @@ public class MainPage1Frag extends Fragment {
             @Override
             public void transformPage(View page, float position) {
 
-             tvcount.setText((viewPager.getCurrentItem() + 1) + " / " + items.size());
+                tvcount.setText((viewPager.getCurrentItem() + 1) + " / " + items.size());
 
             }
         });
 
 
-//        //리사이클러뷰
-//        items.add(new String("aaa"));
-//        items.add(new String("bbb"));
-//        items.add(new String("ccc"));
-//        items.add(new String("ddd"));
-//        items.add(new String("eee"));
-//
-//
-//        recyclerView= view.findViewById(R.id.recycler);
-//        newAdapter= new MainPage1FragNewAdapter(getActivity(), items);
-//        recyclerView.setAdapter(newAdapter);
-//
-//
 
+        Toast.makeText(getActivity(), "main page1 frag oncreateview", Toast.LENGTH_SHORT).show();
 
         return view;
     }//onCreate
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+    }//ontresum
 
 
 }

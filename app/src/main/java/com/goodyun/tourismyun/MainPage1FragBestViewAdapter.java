@@ -32,32 +32,29 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
 
         //뷰페이지 슬라이딩 할 레이아웃 인플레이션
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.main_page1_frag_best_viewpager, container,false);
+        View v = inflater.inflate(R.layout.main_page1_frag_best_viewpager, container, false);
 
 
         container.addView(v);
         return v;
     }
 
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
 
         container.removeView((View) object);
-
     }
 
     @Override
     public int getCount() {
 
-
         return items.size();
-
-
     }
 
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view==object;
+        return view == object;
     }
 }

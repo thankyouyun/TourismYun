@@ -60,17 +60,6 @@
                 tools:layout="@layout/main_page1_frag_middle_fragment" />
 
 
-            <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/recycler"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="#dddddd"-->
-            <!--android:orientation="vertical"-->
-            <!--android:padding="16dp"-->
-            <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager">-->
-
-
-            <!--</android.support.v7.widget.RecyclerView>-->
             <TextView
                 android:id="@+id/tv_new_z"
                 android:layout_width="match_parent"

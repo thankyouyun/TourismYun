@@ -1,14 +1,18 @@
 package com.goodyun.tourismyun;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Fragment changeFrag;
     LinearLayout changeLayout;
-
+    Fragment homeFrag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         changeLayout = findViewById(R.id.change);
-
-        changeFrag = new MainHomeFrag();
+        homeFrag = new MainHomeFrag();
+        changeFrag = homeFrag;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.change, changeFrag).commit();
 
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     BottomNavigationView.OnNavigationItemSelectedListener onBottomNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -51,24 +56,23 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.action_home:
-                    changeFrag = new MainHomeFrag();
+
+                    changeFrag = homeFrag;
 
                     break;
 
                 case R.id.action_plus:
-                    intent = new Intent(MainActivity.this, RoadActivity.class);
-                    startActivity(intent);
-                    return true;
 
+                    changeFrag = new RoadFrag();
+
+                    break;
                 case R.id.action_my:
+
                     changeFrag = new MyPageFrag();
                     break;
 
                 case R.id.action_recent:
-                    intent = new Intent(MainActivity.this, RecentActivity.class);
-                    startActivity(intent);
-
-                    return true;
+                    changeFrag = new RecentFrag();
 
             }//switch
             if (changeFrag != null) {

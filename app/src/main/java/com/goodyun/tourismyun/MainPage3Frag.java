@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MainPage3Fragment extends Fragment {
+public class MainPage3Frag extends Fragment {
 
     @Nullable
     @Override

@@ -13,7 +13,7 @@ import android.widget.ScrollView;
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 
-public class MainPage2Fragment extends Fragment {
+public class MainPage2Frag extends Fragment {
     ArrayList<Items> members= new ArrayList<>();
     ListView listView;
     MainPage2FragAdapter adapter;

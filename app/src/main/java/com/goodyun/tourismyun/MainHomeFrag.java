@@ -16,10 +16,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainHomeFrag extends Fragment {
@@ -30,14 +32,17 @@ public class MainHomeFrag extends Fragment {
     NavigationView navigationView;
     TabLayout tabLayout;
     Toolbar toolbar;
-    public ViewPager pager;
-    MainPageAdapter adapter;
+    ViewPager pager;
+    MainPage1Adapter adapter;
 
+    ImageView iv;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_home_frag,container,false);
+
+        iv = view.findViewById(R.id.iv_logo);
 
         toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
@@ -54,22 +59,35 @@ public class MainHomeFrag extends Fragment {
 
 
         tabLayout = view.findViewById(R.id.layout_tab);
+
         pager = view.findViewById(R.id.pager);
-        adapter = new MainPageAdapter(((AppCompatActivity)getActivity()).getSupportFragmentManager());
+        adapter = new MainPage1Adapter(((AppCompatActivity)getActivity()).getSupportFragmentManager());
+        adapter.getItem(0);
         pager.setAdapter(adapter);
+
 
         tabLayout.setupWithViewPager(pager);
 
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pager.setCurrentItem(0);
+            }
+        });
+        Log.i("TAG", "main home frag oncraete view");
 
 
         return view;
     }//onCreate
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
 
-    public void clickLogo(View v){
-
-
+        Log.i("TAG", "main home frag resume");
     }
+
     //네이게이션뷰리스너
     NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
