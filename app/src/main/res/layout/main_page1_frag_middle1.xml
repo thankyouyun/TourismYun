@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:visibility="gone">
+    tools:context=".MainPage1FragMiddle1">
+
 
 
 
@@ -26,13 +26,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_centerInParent="true"
-                    android:layout_toLeftOf="@id/tv_my"
-                    android:src="@drawable/recent"
-                    android:paddingLeft="16dp"/>
+
 
                 <TextView
                     android:id="@+id/tv_my"
@@ -40,19 +34,19 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="16dp"
-                    android:text="최근 기록"
+                    android:text="문화시설"
                     android:textSize="32sp"
                     android:textStyle="bold" />
-
                 <ImageView
-                    android:id="@+id/clcick_search"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="16dp"
+                    android:id="@+id/img_back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:clickable="true"
-                    android:src="@drawable/control" />
+                    android:onClick="clickback"
+                    android:src="@android:drawable/ic_menu_revert" />
+
+
+
             </RelativeLayout>
 
 
@@ -60,14 +54,43 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_appbar"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/rb_popul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="조회순"/>
+        <RadioButton
+            android:id="@+id/rb_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가나다순"/>
+        <RadioButton
+            android:id="@+id/rb_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최근등록순"/>
+
+    </RadioGroup>
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recent_recycler"
+        android:id="@+id/m1_recycler"
+        android:layout_below="@id/rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cccccc"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        app:spanCount="2">
-
+        android:background="@color/colorline"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:padding="4dp">
     </android.support.v7.widget.RecyclerView>
 
-</LinearLayout>
+
+</RelativeLayout>

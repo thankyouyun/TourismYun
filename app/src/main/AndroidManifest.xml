@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.goodyun.tourismyun">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,12 +19,37 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".RoadActivity"/>
-        <activity android:name=".RecentActivity"
-            />
-        <activity android:name=".SearchActivity">
+        <activity android:name=".SearchActivity" />
 
+        <!--  -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".LogInActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.Main" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <!--  -->
+
+        <activity android:name=".MainPage1FragMiddle1" />
+        <activity android:name=".MainPage1FragMiddle2" />
+        <activity android:name=".MainPage1FragMiddle3" />
+        <activity android:name=".MainPage1FragMiddle4" />
+        <activity android:name=".MainPage1FragMiddle5" />
+        <activity android:name=".MainPage1FragMiddle6" />
+        <activity android:name=".MainPage1FragMiddle4ItemViewActivity" />
+        <activity android:name=".MainPage1FragMiddle1ItemViewActivity"></activity>
     </application>
 
 </manifest>

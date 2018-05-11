@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/auto_pager_relative"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorline">
 
 
     <ImageView
         android:id="@+id/best_back_img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/intro_back" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/intro_back"
+        android:scaleType="fitCenter"
+        />
 
     <TextView
         android:id="@+id/tv_best_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="16dp"
         android:text="title"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="#99ffffff"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:textColor="#333333"
-        android:textSize="56dp"
+        android:textSize="16dp"
+        android:maxLines="1"
         android:textStyle="bold" />
 
 </RelativeLayout>

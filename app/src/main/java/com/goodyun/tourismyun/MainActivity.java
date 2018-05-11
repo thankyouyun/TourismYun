@@ -1,37 +1,39 @@
 package com.goodyun.tourismyun;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
 
     BottomNavigationView bottomNavigationView;
-    Fragment changeFrag;
-    LinearLayout changeLayout;
-    Fragment homeFrag;
+    Fragment[] frags = new Fragment[4];
+    FragmentTransaction transaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        changeLayout = findViewById(R.id.change);
-        homeFrag = new MainHomeFrag();
-        changeFrag = homeFrag;
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.change, changeFrag).commit();
 
+
+        frags[0] = new MainHomeFrag();
+        frags[1] = new RoadFrag();
+        frags[2] = new MyPageFrag();
+        frags[3] = new RecentFrag();
+
+        transaction= getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.change,frags[0]);
+        transaction.add(R.id.change,frags[1]);
+        transaction.add(R.id.change,frags[2]);
+        transaction.add(R.id.change,frags[3]);
+        transaction.commit();
 
         //바텀네비게이션뷰
         bottomNavigationView = findViewById(R.id.bottom_nav);
@@ -48,37 +50,38 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     BottomNavigationView.OnNavigationItemSelectedListener onBottomNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            Intent intent;
+            frags[0].getView().setVisibility(View.GONE);
+            frags[1].getView().setVisibility(View.GONE);
+            frags[2].getView().setVisibility(View.GONE);
+            frags[3].getView().setVisibility(View.GONE);
+
+
 
             switch (item.getItemId()) {
                 case R.id.action_home:
-
-                    changeFrag = homeFrag;
+                    frags[0].getView().setVisibility(View.VISIBLE);
 
                     break;
-
                 case R.id.action_plus:
-
-                    changeFrag = new RoadFrag();
+                    frags[1].getView().setVisibility(View.VISIBLE);
 
                     break;
                 case R.id.action_my:
+                    frags[2].getView().setVisibility(View.VISIBLE);
 
-                    changeFrag = new MyPageFrag();
                     break;
 
                 case R.id.action_recent:
-                    changeFrag = new RecentFrag();
+                    frags[3].getView().setVisibility(View.VISIBLE);
 
+                    break;
             }//switch
-            if (changeFrag != null) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.change, changeFrag).commit();
-            }
+
             return true;
         }
 

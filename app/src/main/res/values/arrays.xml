@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="datas">
+        <item>모두보기</item>
+        <item>국립공원</item>
+        <item>산</item>
+        <item>자연생태공원</item>
+        <item>수목원</item>
+        <item>강/계곡/폭포</item>
+    </string-array>
+</resources>

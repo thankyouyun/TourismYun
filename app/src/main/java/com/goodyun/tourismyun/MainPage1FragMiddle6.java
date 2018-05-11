@@ -1,14 +1,11 @@
 package com.goodyun.tourismyun;
 
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.RadioGroup;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -20,34 +17,64 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainPage1UnderFragment extends Fragment {
+public class MainPage1FragMiddle6 extends AppCompatActivity {
+
+
+
+    String urlAddress;
+    RadioGroup rg;
 
     ArrayList<MainPage1FragMiddlesItem> items = new ArrayList<>();
+    MainPage1FragMiddle6Adapter adapter;
+    RecyclerView recyclerView;
 
-    MainPage1UnderAdapter underAdapter;
-    ListView lv;
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_page1_frag_under_fragment, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_page1_frag_middle6);
 
+
+
+        urlAddress = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=32&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1";
         reedRSS();
 
-
-        lv = view.findViewById(R.id.listview);
-        underAdapter = new MainPage1UnderAdapter(items, getLayoutInflater());
-        underAdapter.refreshAdapter(items);
-        lv.setAdapter(underAdapter);
+        recyclerView = findViewById(R.id.m6_recycler);
+        adapter = new MainPage1FragMiddle6Adapter(this,items);
+        recyclerView.setAdapter(adapter) ;
 
 
-        return view;
-    }//on
+        rg = findViewById(R.id.rg);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+
+
+                switch (checkedId){
+                    case R.id.rb_hotel:
+                        items.clear();
+                        urlAddress = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=32&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1";
+                        reedRSS();
+                        break;
+                    case R.id.rb_shopping:
+                        items.clear();
+                        urlAddress = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=38&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1";
+                        reedRSS();
+                        break;
+                }
+
+            }
+        });
+
+
+
+    }//onCreate
+
+
 
 
     public void reedRSS() {
         try {
-            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=25&areaCode=1&sigunguCode=&cat1=C01&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=D&numOfRows=12&pageNo=1");
+            URL url = new URL(urlAddress);
 
             RssFeedTask task = new RssFeedTask();
 
@@ -60,7 +87,6 @@ public class MainPage1UnderFragment extends Fragment {
 
 
     }
-
 
     class RssFeedTask extends AsyncTask<URL, Void, String> {
 
@@ -98,6 +124,9 @@ public class MainPage1UnderFragment extends Fragment {
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
                                 item = new MainPage1FragMiddlesItem();
+                            } else if (tagName.equals("addr1")) {
+                                xpp.next();
+                                if (item != null) item.setAddr(xpp.getText());
                             } else if (tagName.equals("contentid")) {
                                 xpp.next();
                                 if (item != null) item.setId(xpp.getText());
@@ -110,7 +139,10 @@ public class MainPage1UnderFragment extends Fragment {
                             } else if (tagName.equals("mapy")) {
                                 xpp.next();
                                 if (item != null) item.setMapY(xpp.getText());
-                            } else if (tagName.equals("title")) {
+                            }  else if (tagName.equals("tel")) {
+                                xpp.next();
+                                if (item != null) item.setTel(xpp.getText());
+                            }else if (tagName.equals("title")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());
                             }
@@ -149,12 +181,31 @@ public class MainPage1UnderFragment extends Fragment {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-            underAdapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
 
         }
 
 
     }//RssFeedTask
+
+
+
+
+
+
+
+
+    public void clickback(View v){
+
+        finish();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.disappear_search, R.anim.disappear_search);
+    }
 
 
 }

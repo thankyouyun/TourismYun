@@ -1,6 +1,7 @@
 package com.goodyun.tourismyun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +13,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class MainPage3FragAdapter extends RecyclerView.Adapter {
+public class MainPage1FragMiddle3Adapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<MainPage3FragItem> items;
 
 
-    public MainPage3FragAdapter(Context context, ArrayList<MainPage3FragItem> items) {
+    public MainPage1FragMiddle3Adapter(Context context, ArrayList<MainPage3FragItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -43,7 +44,7 @@ public class MainPage3FragAdapter extends RecyclerView.Adapter {
         vh.tvTitle.setText(item.getTitle());
         vh.tvAddr.setText(item.getAddr());
 
-        Glide.with(context).load(item.getImg()).into(vh.iv);
+        Glide.with(context).load(item.img).into(vh.iv);
 
 
     }
@@ -68,7 +69,16 @@ public class MainPage3FragAdapter extends RecyclerView.Adapter {
 
 
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String id = items.get(getLayoutPosition()).getId();
+                    Intent intent = new Intent(context,MainPage1FragMiddle4ItemViewActivity.class);
+                    intent.putExtra("Id",id);
+                    context.startActivity(intent);
 
+                }
+            });
         }
     }
 

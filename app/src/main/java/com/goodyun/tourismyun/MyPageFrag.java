@@ -44,13 +44,15 @@ public class MyPageFrag extends Fragment {
             }
         });
 
-
+        tvLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),LogInActivity.class));
+            }
+        });
 
         return view;
     }
-
-
-
 
 
 }

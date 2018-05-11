@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">TourismYun</string>
+    <string name="app_name">서울떠나자</string>
+    <string name="facebook_app_id">1334265480039856</string>
+    <string name="fb_login_protocol_scheme">fb1334265480039856</string>
+    <string name="spinner_prompt">선택사항</string>
+
 </resources>

@@ -1,14 +1,10 @@
 package com.goodyun.tourismyun;
 
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -20,34 +16,31 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainPage1UnderFragment extends Fragment {
+public class MainPage1FragMiddle2 extends AppCompatActivity {
+
 
     ArrayList<MainPage1FragMiddlesItem> items = new ArrayList<>();
+    MainPage1FragMiddle2Adapter adapter;
+    RecyclerView recyclerView;
 
-    MainPage1UnderAdapter underAdapter;
-    ListView lv;
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_page1_frag_under_fragment, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_page1_frag_middle2);
 
         reedRSS();
+        recyclerView = findViewById(R.id.m2_recycler);
+        adapter = new MainPage1FragMiddle2Adapter(this,items);
+        recyclerView.setAdapter(adapter);
 
 
-        lv = view.findViewById(R.id.listview);
-        underAdapter = new MainPage1UnderAdapter(items, getLayoutInflater());
-        underAdapter.refreshAdapter(items);
-        lv.setAdapter(underAdapter);
 
-
-        return view;
-    }//on
+    }//onCreate
 
 
     public void reedRSS() {
         try {
-            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=25&areaCode=1&sigunguCode=&cat1=C01&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=D&numOfRows=12&pageNo=1");
+            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=15&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=D&numOfRows=12&pageNo=1");
 
             RssFeedTask task = new RssFeedTask();
 
@@ -98,18 +91,18 @@ public class MainPage1UnderFragment extends Fragment {
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
                                 item = new MainPage1FragMiddlesItem();
+                            } else if (tagName.equals("addr1")) {
+                                xpp.next();
+                                if (item != null) item.setAddr(xpp.getText());
                             } else if (tagName.equals("contentid")) {
                                 xpp.next();
                                 if (item != null) item.setId(xpp.getText());
                             } else if (tagName.equals("firstimage")) {
                                 xpp.next();
                                 if (item != null) item.setImg(xpp.getText());
-                            } else if (tagName.equals("mapx")) {
+                            } else if (tagName.equals("tel")) {
                                 xpp.next();
-                                if (item != null) item.setMapX(xpp.getText());
-                            } else if (tagName.equals("mapy")) {
-                                xpp.next();
-                                if (item != null) item.setMapY(xpp.getText());
+                                if (item != null) item.setTel(xpp.getText());
                             } else if (tagName.equals("title")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());
@@ -121,8 +114,10 @@ public class MainPage1UnderFragment extends Fragment {
                         case XmlPullParser.END_TAG:
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
+
                                 items.add(item);
                                 item = null;
+
                                 publishProgress();
                             }
 
@@ -145,16 +140,29 @@ public class MainPage1UnderFragment extends Fragment {
             return "파싱종료";
         }
 
-
+        //publishProgress()를 호출하면 실행되는 메소드 UI변경작업 가능
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-            underAdapter.notifyDataSetChanged();
-
+            adapter.notifyDataSetChanged();
         }
 
 
     }//RssFeedTask
 
+
+    public void clickback(View v) {
+
+
+        finish();
+
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.disappear_search, R.anim.disappear_search);
+    }
 
 }

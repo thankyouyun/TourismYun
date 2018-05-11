@@ -17,8 +17,6 @@ public class MainPage1Adapter extends FragmentPagerAdapter {
         frags[1] = new MainPage2Frag();
         frags[2] = new MainPage3Frag();
 
-        Log.i("TAG", "mainpageadapter constructor");
-
     }
 
     @Override

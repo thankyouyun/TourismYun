@@ -29,6 +29,8 @@ public class IntroActivity extends AppCompatActivity {
 
 
 
+
+
     }//onCreate
 
     TimerTask task = new TimerTask() {

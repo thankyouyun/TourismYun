@@ -43,9 +43,9 @@ public class MainPage2FragAdapter extends BaseAdapter {
         }
         Items item= items.get(position);
 
-        ImageView iv= view.findViewById(R.id.item_img);
+        ImageView iv= view.findViewById(R.id.under_img);
         TextView tvName= view.findViewById(R.id.item_tv_name);
-        TextView tvNation= view.findViewById(R.id.item_tv_subtitle);
+        TextView tvNation= view.findViewById(R.id.under_tv_subtitle);
 
         iv.setImageResource(item.imgId);
         tvName.setText(item.name);

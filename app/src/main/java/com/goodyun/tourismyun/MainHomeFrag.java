@@ -74,7 +74,6 @@ public class MainHomeFrag extends Fragment {
                 pager.setCurrentItem(0);
             }
         });
-        Log.i("TAG", "main home frag oncraete view");
 
 
         return view;
@@ -85,7 +84,6 @@ public class MainHomeFrag extends Fragment {
         super.onResume();
         adapter.notifyDataSetChanged();
 
-        Log.i("TAG", "main home frag resume");
     }
 
     //네이게이션뷰리스너

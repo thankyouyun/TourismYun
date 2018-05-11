@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -20,9 +23,11 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
 
 
     Context context;
-    ArrayList<String> items;
+    ArrayList<MainPage1FragMiddlesItem> items;
+    TextView tvTitle;
+    ImageView bestBack;
 
-    public MainPage1FragBestViewAdapter(Context context, ArrayList<String> items) {
+    public MainPage1FragBestViewAdapter(Context context, ArrayList<MainPage1FragMiddlesItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -33,6 +38,23 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
         //뷰페이지 슬라이딩 할 레이아웃 인플레이션
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.main_page1_frag_best_viewpager, container, false);
+
+
+        tvTitle = v.findViewById(R.id.tv_best_title);
+        bestBack = v.findViewById(R.id.best_back_img);
+
+        MainPage1FragMiddlesItem item;
+
+        item = items.get(position);
+        tvTitle.setText(item.getTitle());
+        if (item.getImg() == null) {
+
+            bestBack.setVisibility(View.GONE);
+
+        } else {
+            bestBack.setVisibility(View.VISIBLE);
+            Glide.with(v).load(item.getImg()).into(bestBack);
+        }
 
 
         container.addView(v);
