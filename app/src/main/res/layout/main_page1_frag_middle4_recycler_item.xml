@@ -37,7 +37,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="8dp"
             android:layout_centerInParent="true"
-            android:background="@color/white"
+            android:background="#99ffffff"
             android:text="제목"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -52,7 +52,7 @@
             android:layout_marginRight="8dp"
             android:text="전화번호"
             android:textColor="@color/colorTabbar"
-            android:background="@color/white"
+            android:background="#99ffffff"
             android:textSize="12sp" />
     </RelativeLayout>
 

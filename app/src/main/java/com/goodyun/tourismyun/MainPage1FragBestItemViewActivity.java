@@ -1,14 +1,12 @@
 package com.goodyun.tourismyun;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -20,35 +18,42 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainPage1UnderFragment extends Fragment {
+public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
-    ArrayList<MainPage1FragMiddlesItem> items = new ArrayList<>();
+    String id,title;
 
-    MainPage1UnderAdapter underAdapter;
+
     ListView lv;
+    ArrayList<MainPage1FragBestItemView> items = new ArrayList<>();
+    MainPage1FragBestItemViewAdapter adapter;
+TextView tvTitle;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_page1_frag_under_fragment, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_page1_frag_best_item_view);
 
 
+        Intent intent = getIntent();
+        id = intent.getStringExtra("Id");
+        title = intent.getStringExtra("Title");
+        tvTitle = findViewById(R.id.item_vest_title);
+        tvTitle.setText(title);
+        lv = findViewById(R.id.item_vest_list_view);
+        adapter = new MainPage1FragBestItemViewAdapter(this,items,getLayoutInflater());
+        adapter.notifyDataSetChanged();
 
-        lv = view.findViewById(R.id.listview);
-        underAdapter = new MainPage1UnderAdapter(items, getLayoutInflater());
-        lv.setAdapter(underAdapter);
+        lv.setAdapter(adapter);
 
 
         reedRSS();
 
-
-        return view;
-    }//on
+    }//onCreate
 
 
     public void reedRSS() {
         try {
-            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=25&areaCode=1&sigunguCode=&cat1=C01&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=D&numOfRows=12&pageNo=1");
+            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailInfo?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=25&contentId=" + id + "&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&listYN=Y");
 
             RssFeedTask task = new RssFeedTask();
 
@@ -81,7 +86,7 @@ public class MainPage1UnderFragment extends Fragment {
 
                 int eventType = xpp.next();
 
-                MainPage1FragMiddlesItem item = null;
+                MainPage1FragBestItemView item = null;
                 String tagName = null;
 
 
@@ -98,20 +103,17 @@ public class MainPage1UnderFragment extends Fragment {
 
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
-                                item = new MainPage1FragMiddlesItem();
-                            } else if (tagName.equals("contentid")) {
+                                item = new MainPage1FragBestItemView();
+                            } else if (tagName.equals("subcontentid")) {
                                 xpp.next();
-                                if (item != null) item.setId(xpp.getText());
-                            } else if (tagName.equals("firstimage")) {
+                                if (item != null) item.setSubid(xpp.getText());
+                            }  else if (tagName.equals("subdetailimg")) {
                                 xpp.next();
                                 if (item != null) item.setImg(xpp.getText());
-                            } else if (tagName.equals("mapx")) {
+                            } else if (tagName.equals("subdetailoverview")) {
                                 xpp.next();
-                                if (item != null) item.setMapX(xpp.getText());
-                            } else if (tagName.equals("mapy")) {
-                                xpp.next();
-                                if (item != null) item.setMapY(xpp.getText());
-                            } else if (tagName.equals("title")) {
+                                if (item != null) item.setOverView(xpp.getText());
+                            }else if (tagName.equals("subname")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());
                             }
@@ -124,7 +126,7 @@ public class MainPage1UnderFragment extends Fragment {
                             if (tagName.equals("item")) {
                                 items.add(item);
                                 item = null;
-
+                                publishProgress();
                             }
 
                             break;
@@ -136,7 +138,7 @@ public class MainPage1UnderFragment extends Fragment {
                     eventType = xpp.next();
 
                 }
-                publishProgress();
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -153,8 +155,7 @@ public class MainPage1UnderFragment extends Fragment {
             super.onProgressUpdate(values);
 
 
-            underAdapter.notifyDataSetChanged();
-
+            adapter.notifyDataSetChanged();
 
         }
 
@@ -162,4 +163,7 @@ public class MainPage1UnderFragment extends Fragment {
     }//RssFeedTask
 
 
+    public void clickFAB(View v){
+        finish();
+    }
 }

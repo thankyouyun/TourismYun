@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:scaleType="center"
             android:padding="3dp"
-            android:src="@drawable/facebookloginbutton" />
+            android:src="@drawable/korea" />
 
 
         <TextView
@@ -36,7 +36,7 @@
             android:gravity="center"
             android:layout_above="@id/m6_recycler_tv_addr"
             android:layout_marginBottom="8dp"
-            android:background="@color/white"
+            android:background="#99ffffff"
             android:text="제목"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -51,7 +51,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="8dp"
             android:text="주소"
-            android:background="@color/white"
+            android:background="#99ffffff"
             android:textSize="12sp" />
         <TextView
             android:id="@+id/m6_recycler_tv_tel"
@@ -65,7 +65,7 @@
             android:paddingRight="8dp"
             android:text="전화번호"
             android:textColor="@color/colorTabbar"
-            android:background="@color/white"
+            android:background="#99ffffff"
             android:textSize="12sp" />
     </RelativeLayout>
 

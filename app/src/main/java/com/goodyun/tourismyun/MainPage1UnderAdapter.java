@@ -21,6 +21,7 @@ public class MainPage1UnderAdapter extends BaseAdapter {
     public MainPage1UnderAdapter(ArrayList<MainPage1FragMiddlesItem> items, LayoutInflater inflater) {
         this.items = items;
         this.inflater = inflater;
+
     }
 
     @Override
@@ -62,11 +63,5 @@ public class MainPage1UnderAdapter extends BaseAdapter {
 
 
 
-    public void refreshAdapter(ArrayList<MainPage1FragMiddlesItem> items){
-        this.items.clear();
-        this.items.addAll(items);
-        notifyDataSetChanged();
-
-    }
 
 }

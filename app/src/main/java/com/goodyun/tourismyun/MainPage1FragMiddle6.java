@@ -20,8 +20,7 @@ import java.util.ArrayList;
 public class MainPage1FragMiddle6 extends AppCompatActivity {
 
 
-
-    String urlAddress;
+    String typeId;
     RadioGroup rg;
 
     ArrayList<MainPage1FragMiddlesItem> items = new ArrayList<>();
@@ -33,31 +32,31 @@ public class MainPage1FragMiddle6 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page1_frag_middle6);
 
+        typeId = "32";
 
-
-        urlAddress = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=32&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1";
         reedRSS();
-
         recyclerView = findViewById(R.id.m6_recycler);
-        adapter = new MainPage1FragMiddle6Adapter(this,items);
-        recyclerView.setAdapter(adapter) ;
-
-
         rg = findViewById(R.id.rg);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 
 
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rb_hotel:
                         items.clear();
-                        urlAddress = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=32&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1";
+                        typeId = "32";
+                        adapter = new MainPage1FragMiddle6Adapter(MainPage1FragMiddle6.this, items,typeId);
+                        recyclerView.setAdapter(adapter);
                         reedRSS();
+
                         break;
                     case R.id.rb_shopping:
                         items.clear();
-                        urlAddress = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=38&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1";
+                        typeId = "38";
+                        adapter = new MainPage1FragMiddle6Adapter(MainPage1FragMiddle6.this, items,typeId);
+                        recyclerView.setAdapter(adapter);
+
                         reedRSS();
                         break;
                 }
@@ -65,16 +64,18 @@ public class MainPage1FragMiddle6 extends AppCompatActivity {
             }
         });
 
+        adapter = new MainPage1FragMiddle6Adapter(MainPage1FragMiddle6.this, items,typeId);
+        recyclerView.setAdapter(adapter);
+
+
 
 
     }//onCreate
 
 
-
-
     public void reedRSS() {
         try {
-            URL url = new URL(urlAddress);
+            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=" + typeId + "&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1");
 
             RssFeedTask task = new RssFeedTask();
 
@@ -139,10 +140,10 @@ public class MainPage1FragMiddle6 extends AppCompatActivity {
                             } else if (tagName.equals("mapy")) {
                                 xpp.next();
                                 if (item != null) item.setMapY(xpp.getText());
-                            }  else if (tagName.equals("tel")) {
+                            } else if (tagName.equals("tel")) {
                                 xpp.next();
                                 if (item != null) item.setTel(xpp.getText());
-                            }else if (tagName.equals("title")) {
+                            } else if (tagName.equals("title")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());
                             }
@@ -189,13 +190,7 @@ public class MainPage1FragMiddle6 extends AppCompatActivity {
     }//RssFeedTask
 
 
-
-
-
-
-
-
-    public void clickback(View v){
+    public void clickback(View v) {
 
         finish();
 

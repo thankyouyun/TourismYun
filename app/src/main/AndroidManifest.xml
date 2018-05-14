@@ -49,7 +49,18 @@
         <activity android:name=".MainPage1FragMiddle5" />
         <activity android:name=".MainPage1FragMiddle6" />
         <activity android:name=".MainPage1FragMiddle4ItemViewActivity" />
-        <activity android:name=".MainPage1FragMiddle1ItemViewActivity"></activity>
+        <activity android:name=".MainPage1FragMiddle1ItemViewActivity" />
+        <activity android:name=".MainPage1FragMiddle2ItemViewActivity" />
+        <activity android:name=".MainPage1FragMiddle3ItemViewActivity" />
+        <activity android:name=".MainPage1FragMiddle5ItemViewActivity" />
+        <activity
+            android:name=".MainPage1FragMiddle6ItemViewActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".MainPage3FragItemIvewActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".MainPage1FragBestItemViewActivity" />
+        <activity android:name=".ImageVIewZoomActivity" android:theme="@style/Theme.MyDialog"></activity>
     </application>
 
 </manifest>

@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:scaleType="center"
             android:padding="3dp"
-            android:src="@drawable/facebookloginbutton" />
+            android:src="@drawable/korea" />
 
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="8dp"
             android:layout_centerInParent="true"
-            android:background="@color/white"
+            android:background="#99ffffff"
             android:text="제목"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -53,7 +53,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:text="주소"
-            android:background="@color/white"
+            android:background="#99ffffff"
             android:textSize="12sp" />
     </RelativeLayout>
 

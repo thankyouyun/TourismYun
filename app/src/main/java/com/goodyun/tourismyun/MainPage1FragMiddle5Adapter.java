@@ -71,7 +71,7 @@ public class MainPage1FragMiddle5Adapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View view) {
                     String id = items.get(getLayoutPosition()).getId();
-                    Intent intent = new Intent(context,MainPage1FragMiddle4ItemViewActivity.class);
+                    Intent intent = new Intent(context,MainPage1FragMiddle5ItemViewActivity.class);
                     intent.putExtra("Id",id);
                     context.startActivity(intent);
 

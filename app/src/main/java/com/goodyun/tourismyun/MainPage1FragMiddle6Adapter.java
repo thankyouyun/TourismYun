@@ -18,11 +18,12 @@ public class MainPage1FragMiddle6Adapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<MainPage1FragMiddlesItem> items;
+    String typeId;
 
-
-    public MainPage1FragMiddle6Adapter(Context context, ArrayList<MainPage1FragMiddlesItem> items) {
+    public MainPage1FragMiddle6Adapter(Context context, ArrayList<MainPage1FragMiddlesItem> items,String typeId) {
         this.context = context;
         this.items = items;
+        this.typeId = typeId;
     }
 
     @Override
@@ -82,8 +83,9 @@ public class MainPage1FragMiddle6Adapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View view) {
                     String id = items.get(getLayoutPosition()).getId();
-                    Intent intent = new Intent(context,MainPage1FragMiddle4ItemViewActivity.class);
+                    Intent intent = new Intent(context,MainPage1FragMiddle6ItemViewActivity.class);
                     intent.putExtra("Id",id);
+                    intent.putExtra("TypeId",typeId);
                     context.startActivity(intent);
 
                 }

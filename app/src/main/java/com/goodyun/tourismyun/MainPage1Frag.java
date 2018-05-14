@@ -48,19 +48,16 @@ public class MainPage1Frag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_page1_frag, container, false);
-
-
-        reedRSS();
-
-
         tvcount = view.findViewById(R.id.best_tv_count);
         viewPager = (AutoScrollViewPager) view.findViewById(R.id.auto_view);
-
-
         bestViewAdapter = new MainPage1FragBestViewAdapter(getActivity().getApplicationContext(), items);
+        bestViewAdapter.notifyDataSetChanged();
         viewPager.setAdapter(bestViewAdapter);
         viewPager.setInterval(3000);
         viewPager.startAutoScroll();
+
+        reedRSS();
+
 
 
 
@@ -78,10 +75,11 @@ public class MainPage1Frag extends Fragment {
         return view;
     }//onCreate
 
+
+
     @Override
     public void onResume() {
         super.onResume();
-
 
     }//onresume
 
@@ -156,11 +154,12 @@ public class MainPage1Frag extends Fragment {
                         case XmlPullParser.END_TAG:
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
-                                if(items.size()<12) {
+                                if (items.size() < 12) {
                                     items.add(item);
                                     item = null;
+                                    publishProgress();
                                 }
-                                publishProgress();
+
                             }
 
                             break;
@@ -172,6 +171,7 @@ public class MainPage1Frag extends Fragment {
                     eventType = xpp.next();
 
                 }
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -186,7 +186,11 @@ public class MainPage1Frag extends Fragment {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
+
+
             bestViewAdapter.notifyDataSetChanged();
+
+
         }
 
 

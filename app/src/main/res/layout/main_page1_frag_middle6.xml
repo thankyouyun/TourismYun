@@ -31,9 +31,10 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="16dp"
-                    android:text="숙박 / 쇼핑"
+                    android:text="쇼핑/숙박"
                     android:textSize="32sp"
                     android:textStyle="bold" />
+
                 <ImageView
                     android:id="@+id/img_back"
                     android:layout_width="48dp"

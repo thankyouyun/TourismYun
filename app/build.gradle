@@ -36,7 +36,10 @@ dependencies {
     implementation('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
         exclude module: 'support-v4'
     }
+
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+
     implementation 'dev.dworks.libs:volleyplus:+'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

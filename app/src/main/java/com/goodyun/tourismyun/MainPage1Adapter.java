@@ -35,4 +35,5 @@ public class MainPage1Adapter extends FragmentPagerAdapter {
 
         return title[position];
     }
+
 }

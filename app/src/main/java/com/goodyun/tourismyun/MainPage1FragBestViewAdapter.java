@@ -2,6 +2,7 @@ package com.goodyun.tourismyun;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 
@@ -33,17 +34,17 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(final ViewGroup container, int position) {
 
         //뷰페이지 슬라이딩 할 레이아웃 인플레이션
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.main_page1_frag_best_viewpager, container, false);
 
 
         tvTitle = v.findViewById(R.id.tv_best_title);
         bestBack = v.findViewById(R.id.best_back_img);
 
-        MainPage1FragMiddlesItem item;
+        final MainPage1FragMiddlesItem item;
 
         item = items.get(position);
         tvTitle.setText(item.getTitle());
@@ -55,6 +56,18 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
             bestBack.setVisibility(View.VISIBLE);
             Glide.with(v).load(item.getImg()).into(bestBack);
         }
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,MainPage1FragBestItemViewActivity.class);
+                intent.putExtra("Id",item.getId());
+                intent.putExtra("Title",item.getTitle());
+                context.startActivity(intent);
+
+
+            }
+        });
 
 
         container.addView(v);
@@ -79,4 +92,9 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
+
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.goodyun.tourismyun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,12 +61,23 @@ public class MainPage3FragAdapter extends RecyclerView.Adapter {
         TextView tvTitle,tvAddr;
 
 
-        public VH(View itemView) {
+        public VH(final View itemView) {
             super(itemView);
             iv =itemView.findViewById(R.id.m3_iv);
             tvTitle = itemView.findViewById(R.id.m3_recycler_tv_title);
             tvAddr = itemView.findViewById(R.id.m3_recycler_tv_addr);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(context,MainPage3FragItemIvewActivity.class);
+                    intent.putExtra("Id",items.get(getLayoutPosition()).getId());
+                    context.startActivity(intent);
+
+
+                }
+            });
 
 
 
