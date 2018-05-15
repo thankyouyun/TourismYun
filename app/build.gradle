@@ -42,4 +42,5 @@ dependencies {
 
     implementation 'dev.dworks.libs:volleyplus:+'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.naver.maps.open:naver-map-api:2.1.2@aar'
 }

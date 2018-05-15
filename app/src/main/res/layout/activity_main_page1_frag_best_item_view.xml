@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/item_best_coordinator"
     tools:context=".MainPage1FragBestItemViewActivity">
 
 
     <LinearLayout
+        android:id="@+id/item_best_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -29,7 +31,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/colorTabbar" />
+            android:background="@color/colorTabbar"
+            android:layout_marginBottom="24dp"/>
 
 
         <ListView
@@ -38,7 +41,8 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:divider="@color/white"
-            android:dividerHeight="8dp">
+            android:dividerHeight="8dp"
+            android:listSelector="@android:color/transparent">
 
         </ListView>
     </LinearLayout>

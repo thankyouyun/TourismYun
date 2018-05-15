@@ -74,13 +74,16 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
             ivShot.setRotation(degree);
 
         }
+        if(position == items.size()-1){
+            ivShot.setVisibility(View.GONE);
+        }
 
 
         item = items.get(position);
 
         final CircleImageView iv = view.findViewById(R.id.best_item1_view_img);
         TextView tvTitle = view.findViewById(R.id.best_item1_view_title);
-        TextView tvOver = view.findViewById(R.id.best_item1_view_over);
+        final TextView tvOver = view.findViewById(R.id.best_item1_view_over);
         TextView tvMap = view.findViewById(R.id.best_item1_view_map);
 
 
@@ -109,6 +112,24 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
                 //전환 효과
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
                     ActivityOptions options= ActivityOptions.makeSceneTransitionAnimation((Activity)context, new Pair<View, String>(iv, "IMG"));
+                    context.startActivity(intent, options.toBundle());
+                }else{
+                    context.startActivity(intent);
+                }
+
+            }
+        });
+
+
+        tvOver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,MainPage1FragBestItemViewOverActivity.class);
+                intent.putExtra("Over",items.get(position).getOverView());
+                intent.putExtra("Title",items.get(position).getTitle());
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    ActivityOptions options= ActivityOptions.makeSceneTransitionAnimation((Activity)context, new Pair<View, String>(tvOver, "OVER"));
                     context.startActivity(intent, options.toBundle());
                 }else{
                     context.startActivity(intent);

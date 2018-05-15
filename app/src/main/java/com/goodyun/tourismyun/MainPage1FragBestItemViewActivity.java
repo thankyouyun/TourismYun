@@ -2,11 +2,15 @@ package com.goodyun.tourismyun;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -20,13 +24,14 @@ import java.util.ArrayList;
 
 public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
-    String id,title;
+    String id, title, img;
 
 
     ListView lv;
     ArrayList<MainPage1FragBestItemView> items = new ArrayList<>();
     MainPage1FragBestItemViewAdapter adapter;
-TextView tvTitle;
+    TextView tvTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +42,15 @@ TextView tvTitle;
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
         title = intent.getStringExtra("Title");
+        img = intent.getStringExtra("Img");
+
+
+
         tvTitle = findViewById(R.id.item_vest_title);
         tvTitle.setText(title);
         lv = findViewById(R.id.item_vest_list_view);
-        adapter = new MainPage1FragBestItemViewAdapter(this,items,getLayoutInflater());
+
+        adapter = new MainPage1FragBestItemViewAdapter(this, items, getLayoutInflater());
         adapter.notifyDataSetChanged();
 
         lv.setAdapter(adapter);
@@ -107,13 +117,13 @@ TextView tvTitle;
                             } else if (tagName.equals("subcontentid")) {
                                 xpp.next();
                                 if (item != null) item.setSubid(xpp.getText());
-                            }  else if (tagName.equals("subdetailimg")) {
+                            } else if (tagName.equals("subdetailimg")) {
                                 xpp.next();
                                 if (item != null) item.setImg(xpp.getText());
                             } else if (tagName.equals("subdetailoverview")) {
                                 xpp.next();
                                 if (item != null) item.setOverView(xpp.getText());
-                            }else if (tagName.equals("subname")) {
+                            } else if (tagName.equals("subname")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());
                             }
@@ -163,7 +173,7 @@ TextView tvTitle;
     }//RssFeedTask
 
 
-    public void clickFAB(View v){
+    public void clickFAB(View v) {
         finish();
     }
 }

@@ -15,7 +15,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.Appbar" >
+    <style name="AppTheme.Appbar">
         <item name="colorPrimary">@color/colorToolbar</item>
         <item name="colorPrimaryDark">@color/colorTabbar</item>
         <item name="titleTextColor">#000000</item>
@@ -27,8 +27,9 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

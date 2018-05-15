@@ -18,12 +18,10 @@ public class ImageVIewZoomActivity extends AppCompatActivity {
 
         ImageView iv = findViewById(R.id.iv);
         TextView tv = findViewById(R.id.tv);
-        Intent intent= getIntent();
-        String title= intent.getStringExtra("Title");
-        String img= intent.getStringExtra("Img");
 
-        Glide.with(this).load(img).into(iv);
-        tv.setText(title);
+
+        Glide.with(this).load(getIntent().getStringExtra("Img")).into(iv);
+        tv.setText(getIntent().getStringExtra("Title"));
 
 
         //iv에게 Transition의 Pair를 위한 이름 부여

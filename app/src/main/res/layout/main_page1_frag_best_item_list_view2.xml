@@ -1,81 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    >
+    android:layout_height="200dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#99cccccc"
+        app:cardCornerRadius="8dp"
+        app:contentPaddingLeft="4dp"
+        app:contentPaddingRight="4dp">
+
+        <RelativeLayout
+            android:id="@+id/best_item1"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/img_tv_title"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/best_item1_view_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#00000000"
+                    android:padding="3dp"
+                    android:src="@drawable/korea" />
+
+                <TextView
+                    android:id="@+id/best_item1_view_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/colorTabbar"
+                    android:text="제목"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/best_item1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/img_tv_title"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/best_item1_view_img"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:background="#00000000"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:padding="3dp"
-                android:src="@drawable/korea" />
 
             <TextView
-                android:id="@+id/best_item1_view_title"
+                android:id="@+id/best_item1_view_over"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/colorTabbar"
-                android:text="제목"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="36dp"
+                android:layout_toLeftOf="@id/img_tv_title"
+                android:background="@color/colorline"
+                android:gravity="center"
+                android:text="상세설명보기"
                 android:textColor="#333333"
                 android:textSize="16sp" />
 
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/best_item1_view_map"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_below="@id/best_item1_view_over"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_toLeftOf="@id/img_tv_title"
+                android:background="@color/colorline"
+                android:gravity="center"
+                android:text="위치 지도 열기"
+                android:textColor="#333333"
+                android:textSize="16sp" />
 
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_toLeftOf="@id/img_tv_title" />
-
-
-        <TextView
-            android:id="@+id/best_item1_view_over"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="36dp"
-            android:background="@color/colorline"
-            android:gravity="center"
-            android:text="상세설명보기"
-            android:textColor="#333333"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/best_item1_view_map"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_below="@id/best_item1_view_over"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorline"
-            android:gravity="center"
-            android:text="위치 지도 열기"
-            android:textColor="#333333"
-            android:textSize="16sp" />
-
-
-    </RelativeLayout>
-
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <ImageView
         android:id="@+id/best_item_shot2"

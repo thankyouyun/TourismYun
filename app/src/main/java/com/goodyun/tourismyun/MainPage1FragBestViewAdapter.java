@@ -63,6 +63,7 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
                 Intent intent = new Intent(context,MainPage1FragBestItemViewActivity.class);
                 intent.putExtra("Id",item.getId());
                 intent.putExtra("Title",item.getTitle());
+                intent.putExtra("Img",item.getImg());
                 context.startActivity(intent);
 
 
