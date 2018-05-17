@@ -41,7 +41,9 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
+
         title = intent.getStringExtra("Title");
+
         img = intent.getStringExtra("Img");
 
 
@@ -49,6 +51,8 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.item_vest_title);
         tvTitle.setText(title);
         lv = findViewById(R.id.item_vest_list_view);
+
+
 
         adapter = new MainPage1FragBestItemViewAdapter(this, items, getLayoutInflater());
         adapter.notifyDataSetChanged();
@@ -134,6 +138,9 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
                         case XmlPullParser.END_TAG:
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
+
+
+
                                 items.add(item);
                                 item = null;
                                 publishProgress();

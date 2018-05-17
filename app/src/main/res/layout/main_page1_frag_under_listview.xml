@@ -29,23 +29,14 @@
             <TextView
                 android:id="@+id/under_tv_title"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingLeft="8dp"
                 android:text="제목"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/under_tv_subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:paddingLeft="8dp"
-                android:text="여행장소"
-                android:textColor="#222222"
-                android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/under_tv_addr"

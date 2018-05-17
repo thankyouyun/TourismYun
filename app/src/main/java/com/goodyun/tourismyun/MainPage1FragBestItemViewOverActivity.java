@@ -19,6 +19,7 @@ public class MainPage1FragBestItemViewOverActivity extends AppCompatActivity {
         tvTitle.setText(getIntent().getStringExtra("Title"));
 
 
+
         tvOver = findViewById(R.id.item_over_tv);
 
         tvOver.setText(getIntent().getStringExtra("Over"));

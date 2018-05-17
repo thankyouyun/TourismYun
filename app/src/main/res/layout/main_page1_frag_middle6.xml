@@ -44,7 +44,6 @@
                     android:src="@android:drawable/ic_menu_revert" />
 
 
-
             </RelativeLayout>
 
 
@@ -53,42 +52,84 @@
     </android.support.design.widget.AppBarLayout>
 
     <RadioGroup
-        android:id="@+id/rg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/my_appbar"
-        android:orientation="horizontal"
-        android:layout_centerInParent="true"
-        android:padding="8dp"
-        android:gravity="center"
-        >
+    android:id="@+id/rg"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/my_appbar"
+    android:orientation="horizontal"
+    android:layout_centerInParent="true"
+    android:padding="8dp"
+    android:gravity="center"
+    >
 
-        <RadioButton
-            android:id="@+id/rb_hotel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="숙박"
+    <RadioButton
+    android:id="@+id/rb_hotel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="숙박"
 
-            android:layout_marginRight="16dp"/>
-        <RadioButton
-            android:id="@+id/rb_shopping"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:text="쇼핑"/>
+    android:layout_marginRight="16dp"/>
+    <RadioButton
+    android:id="@+id/rb_shopping"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:text="쇼핑"/>
 
 
     </RadioGroup>
 
+    <!--<LinearLayout-->
+        <!--android:id="@+id/rg"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_below="@id/my_appbar">-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/cv1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--app:cardCornerRadius="24dp"-->
+            <!--app:cardBackgroundColor="@color/colorTabbar">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="숙박"-->
+                <!--android:gravity="center"-->
+                <!--android:textStyle="bold"/>/-->
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/cv2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--app:cardCornerRadius="24dp"-->
+            <!--android:backgroundTint="@color/white">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="쇼핑"-->
+                <!--android:gravity="center"-->
+                <!--android:textStyle="bold"/>/-->
+        <!--</android.support.v7.widget.CardView>-->
+
+
+    <!--</LinearLayout>-->
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/m6_recycler"
-        android:layout_below="@id/rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rg"
         android:background="@color/colorline"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:orientation="vertical"
-        android:padding="4dp">
-    </android.support.v7.widget.RecyclerView>
+        android:padding="4dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

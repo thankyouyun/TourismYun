@@ -1,5 +1,6 @@
 package com.goodyun.tourismyun;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -35,7 +36,7 @@ public class MainPage1UnderFragment extends Fragment {
 
 
         lv = view.findViewById(R.id.listview);
-        underAdapter = new MainPage1UnderAdapter(items, getLayoutInflater());
+        underAdapter = new MainPage1UnderAdapter(getContext(),items, getLayoutInflater());
         lv.setAdapter(underAdapter);
 
 
@@ -153,7 +154,7 @@ public class MainPage1UnderFragment extends Fragment {
             super.onProgressUpdate(values);
 
 
-            underAdapter.notifyDataSetChanged();
+                underAdapter.notifyDataSetChanged();
 
 
         }

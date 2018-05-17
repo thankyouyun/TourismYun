@@ -1,8 +1,12 @@
 package com.goodyun.tourismyun;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -27,12 +31,19 @@ public class MainPage1FragMiddle6 extends AppCompatActivity {
     MainPage1FragMiddle6Adapter adapter;
     RecyclerView recyclerView;
 
+//    CardView c1, c2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page1_frag_middle6);
 
         typeId = "32";
+
+//        c1 = findViewById(R.id.cv1);
+//        c2 = findViewById(R.id.cv2);
+
 
         reedRSS();
         recyclerView = findViewById(R.id.m6_recycler);
@@ -64,10 +75,40 @@ public class MainPage1FragMiddle6 extends AppCompatActivity {
             }
         });
 
-        adapter = new MainPage1FragMiddle6Adapter(MainPage1FragMiddle6.this, items,typeId);
+
+//        c1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                c2.setCardBackgroundColor(ContextCompat.getColor(MainPage1FragMiddle6.this,R.color.white));
+//                c1.setCardBackgroundColor(ContextCompat.getColor(MainPage1FragMiddle6.this,R.color.colorTabbar));
+//                items.clear();
+//                typeId = "32";
+//                adapter = new MainPage1FragMiddle6Adapter(MainPage1FragMiddle6.this, items, typeId);
+//                recyclerView.setAdapter(adapter);
+//                reedRSS();
+//
+//
+//            }
+//        });
+//
+//        c2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                c1.setCardBackgroundColor(ContextCompat.getColor(MainPage1FragMiddle6.this,R.color.white));
+//                c2.setCardBackgroundColor(ContextCompat.getColor(MainPage1FragMiddle6.this,R.color.colorTabbar));
+//                items.clear();
+//                typeId = "38";
+//                adapter = new MainPage1FragMiddle6Adapter(MainPage1FragMiddle6.this, items, typeId);
+//                recyclerView.setAdapter(adapter);
+//                reedRSS();
+//
+//
+//            }
+//        });
+
+
+        adapter = new MainPage1FragMiddle6Adapter(MainPage1FragMiddle6.this, items, typeId);
         recyclerView.setAdapter(adapter);
-
-
 
 
     }//onCreate

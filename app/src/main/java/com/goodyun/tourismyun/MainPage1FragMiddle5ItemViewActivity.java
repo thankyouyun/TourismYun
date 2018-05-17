@@ -36,6 +36,7 @@ public class MainPage1FragMiddle5ItemViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
 
+
         reedRSS();
         reedRSSImgMenu();
         reedInforSub();

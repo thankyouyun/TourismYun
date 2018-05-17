@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class MainPage1FragMiddle5 extends AppCompatActivity {
 
-    String changeList;
+    String changeList,mapX,mapY;
 
     Spinner spinner;
     ArrayAdapter spinnerAdapter;

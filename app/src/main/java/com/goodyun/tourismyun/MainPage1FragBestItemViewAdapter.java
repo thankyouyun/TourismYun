@@ -74,7 +74,7 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
             ivShot.setRotation(degree);
 
         }
-        if(position == items.size()-1){
+        if (position == items.size() - 1) {
             ivShot.setVisibility(View.GONE);
         }
 
@@ -87,8 +87,6 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
         TextView tvMap = view.findViewById(R.id.best_item1_view_map);
 
 
-
-
         if (item.getImg() == null) {
 
             Glide.with(view).load(R.drawable.korea).into(iv);
@@ -97,23 +95,29 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
 
             Glide.with(view).load(item.getImg()).into(iv);
         }
-        tvTitle.setText(item.getTitle());
+
+
+        String title =item.getTitle();
+        if(title.contains("점심식사")){
+            title = item.getTitle().replace("점심식사(","").replace(")","");
+        }
+
+        tvTitle.setText(title);
 
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-                Intent intent= new Intent(context, ImageVIewZoomActivity.class);
+                Intent intent = new Intent(context, ImageVIewZoomActivity.class);
                 intent.putExtra("Img", items.get(position).getImg());
                 intent.putExtra("Title", items.get(position).getTitle());
 
 
                 //전환 효과
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-                    ActivityOptions options= ActivityOptions.makeSceneTransitionAnimation((Activity)context, new Pair<View, String>(iv, "IMG"));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, new Pair<View, String>(iv, "IMG"));
                     context.startActivity(intent, options.toBundle());
-                }else{
+                } else {
                     context.startActivity(intent);
                 }
 
@@ -124,20 +128,29 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
         tvOver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,MainPage1FragBestItemViewOverActivity.class);
-                intent.putExtra("Over",items.get(position).getOverView());
-                intent.putExtra("Title",items.get(position).getTitle());
+                Intent intent = new Intent(context, MainPage1FragBestItemViewOverActivity.class);
+                intent.putExtra("Over", items.get(position).getOverView());
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-                    ActivityOptions options= ActivityOptions.makeSceneTransitionAnimation((Activity)context, new Pair<View, String>(tvOver, "OVER"));
+                String title = items.get(position).getTitle();
+                intent.putExtra("Title", title);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, new Pair<View, String>(tvOver, "OVER"));
                     context.startActivity(intent, options.toBundle());
-                }else{
+                } else {
                     context.startActivity(intent);
                 }
 
             }
         });
 
+        tvMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
 
 
         return view;

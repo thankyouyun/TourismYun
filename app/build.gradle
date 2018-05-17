@@ -39,8 +39,11 @@ dependencies {
 
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
-
     implementation 'dev.dworks.libs:volleyplus:+'
+
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.naver.maps.open:naver-map-api:2.1.2@aar'
+
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    implementation 'com.google.android.gms:play-services-places:15.0.1'
+
 }

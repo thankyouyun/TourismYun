@@ -4,5 +4,7 @@
     <string name="fb_login_protocol_scheme">fb1334265480039856</string>
     <string name="spinner_prompt">선택사항</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="str_done">완료</string>
+    <string name="g_key">AIzaSyBy1-GCvrl2AXdpb8SX7o4bfKPxiKex-oY</string>
 
 </resources>
