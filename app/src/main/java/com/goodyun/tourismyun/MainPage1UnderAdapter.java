@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.v4.app.INotificationSideChannel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,12 +85,14 @@ public class MainPage1UnderAdapter extends BaseAdapter {
             }
         }
 
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(context,MainPage1FragUnderItemViewActivity.class);
+                Intent intent = new Intent(context,MainPage1FragBestItemViewActivity.class);
                 intent.putExtra("Id",items.get(position).getId());
+                intent.putExtra("Title",items.get(position).getTitle());
                 intent.putExtra("Addr",items.get(position).getAddr());
                 intent.putExtra("MapX",items.get(position).getMapX());
                 intent.putExtra("MapY",items.get(position).getMapY());

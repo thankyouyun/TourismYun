@@ -125,7 +125,7 @@ public class MainPage1UnderFragment extends Fragment {
                             if (tagName.equals("item")) {
                                 items.add(item);
                                 item = null;
-
+                                publishProgress();
                             }
 
                             break;
@@ -137,7 +137,7 @@ public class MainPage1UnderFragment extends Fragment {
                     eventType = xpp.next();
 
                 }
-                publishProgress();
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -154,10 +154,9 @@ public class MainPage1UnderFragment extends Fragment {
             super.onProgressUpdate(values);
 
 
-                underAdapter.notifyDataSetChanged();
+          underAdapter.notifyDataSetChanged();
 
-
-        }
+        }//pro
 
 
     }//RssFeedTask

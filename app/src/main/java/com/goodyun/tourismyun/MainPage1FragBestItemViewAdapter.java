@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.os.Build;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,10 +30,13 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
     ArrayList<MainPage1FragBestItemView> items;
     MainPage1FragBestItemView item;
     LayoutInflater inflater;
+
     CircleImageView iv;
+
     TextView tvTitle;
     TextView tvOver;
     TextView tvMap;
+
     Context context;
     String title;
     public MainPage1FragBestItemViewAdapter(Context context, ArrayList<MainPage1FragBestItemView> items, LayoutInflater inflater) {
@@ -61,7 +65,7 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup viewGroup) {
 
 
-        notifyDataSetChanged();
+        
         ImageView ivShot;
 
         float degree;
@@ -103,6 +107,8 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
 
             Glide.with(view).load(item.getImg()).into(iv);
         }
+
+
 
 
         title = item.getTitle();
