@@ -89,6 +89,7 @@ public class MainPage1UnderAdapter extends BaseAdapter {
             public void onClick(View view) {
 
                 Intent intent = new Intent(context,MainPage1FragUnderItemViewActivity.class);
+                intent.putExtra("Id",items.get(position).getId());
                 intent.putExtra("Addr",items.get(position).getAddr());
                 intent.putExtra("MapX",items.get(position).getMapX());
                 intent.putExtra("MapY",items.get(position).getMapY());
