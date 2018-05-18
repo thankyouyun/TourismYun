@@ -29,9 +29,12 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
     ArrayList<MainPage1FragBestItemView> items;
     MainPage1FragBestItemView item;
     LayoutInflater inflater;
-
+    CircleImageView iv;
+    TextView tvTitle;
+    TextView tvOver;
+    TextView tvMap;
     Context context;
-
+    String title;
     public MainPage1FragBestItemViewAdapter(Context context, ArrayList<MainPage1FragBestItemView> items, LayoutInflater inflater) {
         this.items = items;
         this.inflater = inflater;
@@ -58,6 +61,7 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup viewGroup) {
 
 
+        notifyDataSetChanged();
         ImageView ivShot;
 
         float degree;
@@ -81,10 +85,14 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
 
         item = items.get(position);
 
-        final CircleImageView iv = view.findViewById(R.id.best_item1_view_img);
-        TextView tvTitle = view.findViewById(R.id.best_item1_view_title);
-        final TextView tvOver = view.findViewById(R.id.best_item1_view_over);
-        TextView tvMap = view.findViewById(R.id.best_item1_view_map);
+
+        iv = view.findViewById(R.id.best_item1_view_img);
+
+        tvTitle = view.findViewById(R.id.best_item1_view_title);
+
+        tvOver = view.findViewById(R.id.best_item1_view_over);
+
+        tvMap = view.findViewById(R.id.best_item1_view_map);
 
 
         if (item.getImg() == null) {
@@ -97,12 +105,16 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
         }
 
 
-        String title =item.getTitle();
+        title = item.getTitle();
         if(title.contains("점심식사")){
-            title = item.getTitle().replace("점심식사(","").replace(")","");
+            title = title.replace("점심식사","").replace("(","").replace(")","");
+        } else if (title.contains("식사")) {
+            title = title.replace("(식사)","");
+        }else{
+            title =item.getTitle();
         }
-
         tvTitle.setText(title);
+
 
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +159,18 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
         tvMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                title = items.get(position).getTitle();
+                if(title.contains("점심식사")){
+                    title = title.replace("점심식사","").replace("(","").replace(")","");
+                } else if (title.contains("식사")) {
+                    title = title.replace("(식사)","");
+                }
+
+
+                Intent intent = new Intent(context,MainPage1FragBestItemViewMapActivity.class);
+                intent.putExtra("Title",title);
+                context.startActivity(intent);
+
 
 
             }

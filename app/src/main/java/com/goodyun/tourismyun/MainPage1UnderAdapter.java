@@ -1,6 +1,7 @@
 package com.goodyun.tourismyun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.view.LayoutInflater;
@@ -20,11 +21,11 @@ import java.util.List;
 public class MainPage1UnderAdapter extends BaseAdapter {
 
 
-
     ArrayList<MainPage1FragMiddlesItem> items;
     LayoutInflater inflater;
     Context context;
-    public MainPage1UnderAdapter(Context context,ArrayList<MainPage1FragMiddlesItem> items, LayoutInflater inflater) {
+
+    public MainPage1UnderAdapter(Context context, ArrayList<MainPage1FragMiddlesItem> items, LayoutInflater inflater) {
         this.items = items;
         this.inflater = inflater;
         this.context = context;
@@ -46,10 +47,10 @@ public class MainPage1UnderAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
 
 
-        view = inflater.inflate(R.layout.main_page1_frag_under_listview,viewGroup,false);
+        view = inflater.inflate(R.layout.main_page1_frag_under_listview, viewGroup, false);
 
         MainPage1FragMiddlesItem item = items.get(position);
 
@@ -61,36 +62,42 @@ public class MainPage1UnderAdapter extends BaseAdapter {
         tvTitle.setText(item.getTitle());
 
         final Geocoder geocoder = new Geocoder(context);
-        List<Address> addresses=null;
+        List<Address> addresses = null;
 
         double x = Double.parseDouble(item.mapX.toString());
         double y = Double.parseDouble(item.mapY.toString());
 
         try {
-            addresses = geocoder.getFromLocation(y,x,1);
+            addresses = geocoder.getFromLocation(y, x, 1);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        if(addresses!=null) {
+        if (addresses != null) {
 
-            if(addresses.size()==0){
+            if (addresses.size() == 0) {
                 tvAddr.setText("해당주소가 없습니다..");
 
-            }else{
+            } else {
                 tvAddr.setText(addresses.get(0).getAddressLine(0).toString());
             }
-
-
-        }else{
-
         }
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(context,MainPage1FragUnderItemViewActivity.class);
+                intent.putExtra("Addr",items.get(position).getAddr());
+                intent.putExtra("MapX",items.get(position).getMapX());
+                intent.putExtra("MapY",items.get(position).getMapY());
+                context.startActivity(intent);
+            }
+        });
 
         return view;
     }
-
-
 
 
 }

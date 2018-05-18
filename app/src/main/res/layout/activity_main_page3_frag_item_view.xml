@@ -72,6 +72,24 @@
                 android:textStyle="bold" />
 
 
+            <TextView
+                android:id="@+id/item_view_tv_sub_map_title"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@color/colorline"
+                android:paddingLeft="16dp"
+                android:text="위치 정보"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="8dp"
+                android:layout_marginTop="16dp" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

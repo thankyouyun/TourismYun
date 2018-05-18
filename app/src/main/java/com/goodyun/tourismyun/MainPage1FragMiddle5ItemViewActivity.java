@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -27,6 +29,8 @@ public class MainPage1FragMiddle5ItemViewActivity extends AppCompatActivity {
     AutoScrollViewPager viewPager;
     MainPage1FragMiddleItemViewAdapter adapter;
     ArrayList<String> itemImg = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,9 +177,6 @@ public class MainPage1FragMiddle5ItemViewActivity extends AppCompatActivity {
             tvOverTitle.setText(item.getTitle() + "-필수정보");
             tvSubTitle.setText(item.getTitle() + "에 기본정보");
 
-
-            mapX = item.getMapX();
-            mapY = item.getMapY();
 
 
         }

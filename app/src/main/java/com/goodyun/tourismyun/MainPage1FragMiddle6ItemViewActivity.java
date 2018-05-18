@@ -1,14 +1,26 @@
 package com.goodyun.tourismyun;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -24,7 +36,7 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainPage1FragMiddle6ItemViewActivity extends AppCompatActivity {
 
-    String id, typeId, addr, mapX, mapY, urlAddr;
+    String id, typeId, addr,title, urlAddr;
 
 
     TextView tvOver, tvSubOver, tvOverTitle, tvSubTitle, tvTel;
@@ -33,7 +45,8 @@ public class MainPage1FragMiddle6ItemViewActivity extends AppCompatActivity {
     MainPage1FragMiddleItemViewAdapter adapter;
     ArrayList<String> itemImg = new ArrayList<>();
 
-
+    GoogleMap gmap;
+    double lat, lon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,6 +192,56 @@ public class MainPage1FragMiddle6ItemViewActivity extends AppCompatActivity {
             tvOver.setText(item.getOverView());
             tvOverTitle.setText(item.getTitle());
 
+
+
+
+
+            title = item.getTitle();
+            if(item.getMapY()!=null){
+                lat = Double.parseDouble(item.getMapY());
+                lon = Double.parseDouble(item.getMapX());
+
+            }
+            //구글맵 .........................
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            final SupportMapFragment mapFragment = (SupportMapFragment) fragmentManager.findFragmentById(R.id.map);
+
+
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    gmap = googleMap;
+
+                    //지도의 특정좌표로 이동 및 줌인
+                    LatLng seoul = new LatLng(lat, lon);
+                    gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 15));
+
+                    //마커추가하기
+                    MarkerOptions marker = new MarkerOptions();
+                    marker.title(title);
+//                marker.snippet("Seoul is the capital of Korea");
+//                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ch_chopa));
+                    marker.anchor(0.5f, 1.0f);
+
+                    marker.position(seoul);
+
+                    gmap.addMarker(marker);
+
+
+                    //지도의 대표적인 설정들.
+                    UiSettings settings = gmap.getUiSettings();
+                    settings.setZoomControlsEnabled(true);
+                    settings.setMyLocationButtonEnabled(true);
+                    settings.setCompassEnabled(true);
+
+                    if (ActivityCompat.checkSelfPermission(MainPage1FragMiddle6ItemViewActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainPage1FragMiddle6ItemViewActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    gmap.setMyLocationEnabled(true);
+
+
+                }
+            });//gmap
 
         }
 

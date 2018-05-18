@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,6 +44,7 @@ public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
     ArrayList<String> itemImg = new ArrayList<>();
     GoogleMap gmap;
     double lat, lon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -404,7 +406,7 @@ public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
             });
 
 
-            if(item.getMapY()!=null){
+            if (item.getMapY() != null) {
                 lat = Double.parseDouble(item.getMapY());
                 lon = Double.parseDouble(item.getMapX());
 
@@ -449,12 +451,6 @@ public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
 
                 }
             });//gmap
-
-
-
-
-
-
 
 
         }
@@ -580,12 +576,19 @@ public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
 
+            adapter.notifyDataSetChanged();
 
-            tvSubOver.setText("주최 : "+item.getSpon()+"\n\n장소 : "+item.getPlase()+"\n\n상세주소 : "+addr+"\n\n시작일 : "+item.getStdate()+"\n\n종료일 :"+item.getEnddate()+
-            "\n\n이용요금 : "+item.getFee().replace("<br />","")+"\n\n연령 : "+item.getAge()+"\n\n관람시간 : "+item.getTime()+"\n\n소요시간 : "+item.getUseTime()+
-            "\n\n행사 : "+item.getEvent().replace("<br />",""));
+            if (item.getFee().contains("br")) {
+                item.setFee(item.getFee().replace("<br />", ""));
+            }
 
+            if (item.getEvent().contains("br")) {
+                item.setEvent(item.getEvent().replace("<br />", ""));
+            }
 
+            tvSubOver.setText("주최 : " + item.getSpon() + "\n\n장소 : " + item.getPlase() + "\n\n상세주소 : " + addr + "\n\n시작일 : " + item.getStdate() + "\n\n종료일 :" + item.getEnddate() +
+                    "\n\n이용요금 : " + item.getFee() + "\n\n연령 : " + item.getAge() + "\n\n관람시간 : " + item.getTime() + "\n\n소요시간 : " + item.getUseTime() +
+                    "\n\n행사 : " + item.getEvent());
 
 
         }

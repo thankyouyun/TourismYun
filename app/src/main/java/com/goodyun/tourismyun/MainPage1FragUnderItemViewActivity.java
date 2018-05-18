@@ -22,6 +22,7 @@ public class MainPage1FragUnderItemViewActivity extends AppCompatActivity {
     String title;
     GoogleMap gmap;
 
+    double lat,lon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +32,10 @@ public class MainPage1FragUnderItemViewActivity extends AppCompatActivity {
 
 
 
-        final double x = Double.parseDouble(getIntent().getStringExtra("MapX"));
-        final double y = Double.parseDouble(getIntent().getStringExtra("MapY"));
+
+
+        lon = Double.parseDouble(getIntent().getStringExtra("MapX"));
+        lat = Double.parseDouble(getIntent().getStringExtra("MapY"));
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -45,7 +48,7 @@ public class MainPage1FragUnderItemViewActivity extends AppCompatActivity {
                 gmap = googleMap;
 
                 //지도의 특정좌표로 이동 및 줌인
-                LatLng seoul= new LatLng(y,x);
+                LatLng seoul= new LatLng(lat,lon);
                 gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 15));
 
                 //마커추가하기
