@@ -143,6 +143,12 @@ public class MainPage1Frag extends Fragment {
                             } else if (tagName.equals("firstimage")) {
                                 xpp.next();
                                 if (item != null) item.setImg(xpp.getText());
+                            }else if (tagName.equals("mapx")) {
+                                xpp.next();
+                                if (item != null) item.setMapX(xpp.getText());
+                            }else if (tagName.equals("mapy")) {
+                                xpp.next();
+                                if (item != null) item.setMapY(xpp.getText());
                             } else if (tagName.equals("title")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());

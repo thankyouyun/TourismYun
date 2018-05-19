@@ -20,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.util.MapUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -40,7 +41,7 @@ import java.util.ArrayList;
 
 public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
-    String id, title, img,mapX,mapY;
+    String id, title, img, mapX, mapY;
 
 
     ListView lv;
@@ -75,17 +76,22 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
 
-
-
-
-
-        if(mapY!=null){
+        if (mapY != null) {
             lat = Double.parseDouble(mapY);
             lon = Double.parseDouble(mapX);
 
         }
 
-
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         //구글맵 .........................
         FragmentManager fragmentManager = getSupportFragmentManager();
         final SupportMapFragment mapFragment = (SupportMapFragment) fragmentManager.findFragmentById(R.id.map);
@@ -126,9 +132,6 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
             }
         });//gmap
-
-
-
 
 
     }//onCreate
