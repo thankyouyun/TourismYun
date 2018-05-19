@@ -48,16 +48,14 @@ public class MainPage1Frag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_page1_frag, container, false);
+
+
+
         tvcount = view.findViewById(R.id.best_tv_count);
         viewPager = (AutoScrollViewPager) view.findViewById(R.id.auto_view);
-        bestViewAdapter = new MainPage1FragBestViewAdapter(getActivity().getApplicationContext(), items);
-        bestViewAdapter.notifyDataSetChanged();
-        viewPager.setAdapter(bestViewAdapter);
-        viewPager.setInterval(3000);
-        viewPager.startAutoScroll();
+
 
         reedRSS();
-
 
 
 
@@ -194,7 +192,33 @@ public class MainPage1Frag extends Fragment {
             super.onProgressUpdate(values);
 
 
+            bestViewAdapter = new MainPage1FragBestViewAdapter(getActivity().getApplicationContext(), items);
+            viewPager.setAdapter(bestViewAdapter);
+            viewPager.setInterval(3000);
+            viewPager.startAutoScroll();
             bestViewAdapter.notifyDataSetChanged();
+
+
+
+//           Runnable notifyDataChange  = new Runnable() {
+//               @Override
+//               public void run() {
+//                   bestViewAdapter.notifyDataSetChanged();
+//                   synchronized (this){
+//                       this.notify();
+//                   }
+//               }
+//           };//s1
+//
+//            synchronized (notifyDataChange){
+//                getActivity().runOnUiThread(notifyDataChange);
+//                try{
+//                    notifyDataChange.wait();
+//                }catch (Exception e){
+//
+//                }
+//
+//            }//s2
 
 
         }

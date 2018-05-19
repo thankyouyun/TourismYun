@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -34,9 +35,8 @@ public class MainPage1UnderFragment extends Fragment {
         View view = inflater.inflate(R.layout.main_page1_frag_under_fragment, container, false);
 
 
-
         lv = view.findViewById(R.id.listview);
-        underAdapter = new MainPage1UnderAdapter(getContext(),items, getLayoutInflater());
+        underAdapter = new MainPage1UnderAdapter(getContext(), items, getLayoutInflater());
         lv.setAdapter(underAdapter);
 
 
@@ -46,6 +46,28 @@ public class MainPage1UnderFragment extends Fragment {
         return view;
     }//on
 
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 240;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }//ls
 
     public void reedRSS() {
         try {
@@ -154,7 +176,28 @@ public class MainPage1UnderFragment extends Fragment {
             super.onProgressUpdate(values);
 
 
-          underAdapter.notifyDataSetChanged();
+            underAdapter.notifyDataSetChanged();
+            setListViewHeightBasedOnChildren(lv);
+
+//            Runnable notifyDataChange  = new Runnable() {
+//               @Override
+//               public void run() {
+//                   underAdapter.notifyDataSetChanged();
+//                   synchronized (this){
+//                       this.notify();
+//                   }
+//               }
+//           };//s1
+//
+//            synchronized (notifyDataChange){
+//                getActivity().runOnUiThread(notifyDataChange);
+//                try{
+//                    notifyDataChange.wait();
+//                }catch (Exception e){
+//
+//                }
+//
+//            }
 
         }//pro
 

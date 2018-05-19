@@ -76,7 +76,6 @@
         <activity android:name=".MainPage1FragBestItemViewMapActivity"
             android:theme="@style/Theme.MyDialog"/>
 
-        <activity android:name=".MainPage1FragUnderItemViewActivity"/>
 
     </application>
 

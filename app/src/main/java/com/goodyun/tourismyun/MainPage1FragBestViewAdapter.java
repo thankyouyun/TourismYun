@@ -23,8 +23,9 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 public class MainPage1FragBestViewAdapter extends PagerAdapter {
 
 
-    Context context;
-    ArrayList<MainPage1FragMiddlesItem> items;
+    private final Context context;
+    private final ArrayList<MainPage1FragMiddlesItem> items;
+    MainPage1FragMiddlesItem item;
     TextView tvTitle;
     ImageView bestBack;
 
@@ -44,7 +45,6 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
         tvTitle = v.findViewById(R.id.tv_best_title);
         bestBack = v.findViewById(R.id.best_back_img);
 
-        final MainPage1FragMiddlesItem item;
 
         item = items.get(position);
         tvTitle.setText(item.getTitle());
@@ -73,7 +73,6 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
             }
         });
 
-
         container.addView(v);
         return v;
     }
@@ -87,6 +86,7 @@ public class MainPage1FragBestViewAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
+
 
         return items.size();
     }

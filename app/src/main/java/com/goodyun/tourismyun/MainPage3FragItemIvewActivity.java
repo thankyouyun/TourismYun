@@ -64,10 +64,7 @@ public class MainPage3FragItemIvewActivity extends AppCompatActivity {
         reedRSS();
         reedInforSub();
         viewPager = findViewById(R.id.item_view_auto_tour);
-        adapter = new MainPage1FragMiddleItemViewAdapter(this, itemImg);
-        viewPager.setAdapter(adapter);
-        viewPager.setInterval(1800);
-        viewPager.startAutoScroll();
+
 
 
         reedRSSImgMenu();
@@ -450,11 +447,12 @@ public class MainPage3FragItemIvewActivity extends AppCompatActivity {
             if (itemImg.size() == 0) {
                 viewPager.setVisibility(View.GONE);
             }
-            try {
-                adapter.notifyDataSetChanged();
-            }catch (Exception e){
+            adapter = new MainPage1FragMiddleItemViewAdapter(MainPage3FragItemIvewActivity.this, itemImg);
+            viewPager.setAdapter(adapter);
+            viewPager.setInterval(1800);
+            viewPager.startAutoScroll();
 
-            }
+            adapter.notifyDataSetChanged();
         }
 
 

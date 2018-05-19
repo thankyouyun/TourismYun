@@ -150,6 +150,8 @@ public class MainPage3Frag extends Fragment {
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
             adapter.notifyDataSetChanged();
+
+
         }
 
 

@@ -83,7 +83,7 @@
                 android:id="@+id/new_fragment"
                 android:name="com.goodyun.tourismyun.MainPage1UnderFragment"
                 android:layout_width="match_parent"
-                android:layout_height="1920dp"
+                android:layout_height="wrap_content"
                 tools:layout="@layout/main_page1_frag_under_fragment" />
 
 
