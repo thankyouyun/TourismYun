@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -82,10 +83,7 @@ public class MainPage1FragMiddle5 extends AppCompatActivity {
                         items.clear();
                         changeList = "&cat1=A01&cat2=A0101&cat3=A01010800";
                         reedRSS();
-                        changeList = "&cat1=A01&cat2=A0101&cat3=A01010900";
-                        reedRSS();
-                        changeList = "&cat1=A01&cat2=A0101&cat3=A01011800";
-                        reedRSS();
+
                         break;
 
 

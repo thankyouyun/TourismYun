@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+
+    <ImageView
+        android:layout_width="240dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:textColor="#333333"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:text="로그인을 통해 서울의 다양한 혜택을 누리세요 "
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:text="로그인"
+        android:background="@color/colorline"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"/>
+
+
+</LinearLayout>

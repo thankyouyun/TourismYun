@@ -39,7 +39,7 @@ public class LogInActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     Object loginObject = null;
 
-    Button CustomloginButton, uploadcheck, loadcheck;
+    Button CustomloginButton, uploadcheck, loadcheck,auto;
 
     JSONObject jsonData;
 
@@ -52,21 +52,39 @@ public class LogInActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
 
-        uploadcheck = findViewById(R.id.btn_login_uploadcheck);
-        uploadcheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadStorageLoginData();
-            }
-        });
+//        uploadcheck = findViewById(R.id.btn_login_uploadcheck);
+//        uploadcheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                loadStorageLoginData();
+//            }
+//        });
 
-        loadcheck = findViewById(R.id.btn_login_loadcheck);
-        loadcheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                downloadDB();
-            }
-        });
+
+//        auto = findViewById(R.id.btn_login_auto);
+//        auto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SharedPreferences preferences = getSharedPreferences("LoginData", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = preferences.edit();
+//                editor.clear();
+//                editor.commit();
+//                IntroActivity.loginOnOff=false;
+//
+//            }
+//        });
+
+
+
+//        loadcheck = findViewById(R.id.btn_login_loadcheck);
+//        loadcheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                downloadDB();
+//            }
+//        });
+
+
 
         callbackManager = CallbackManager.Factory.create();
 //        페이스북 기본로그인버튼
@@ -78,6 +96,19 @@ public class LogInActivity extends AppCompatActivity {
 
 
     }//onCreate
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+//        overridePendingTransition(R.anim.disappear_search, R.anim.disappear_search);
+//        finish();
+    }
+
+
+    public void clickOut(View v){
+        finish();
+    }
 
 //    페이스북 기본로그인버튼
 //    public void setFacebookLoginBtn() {
@@ -130,6 +161,7 @@ public class LogInActivity extends AppCompatActivity {
             LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult) {
+
                     GraphRequest request = GraphRequest.newMeRequest(
                             loginResult.getAccessToken(),
                             new GraphRequest.GraphJSONObjectCallback() {
@@ -143,6 +175,10 @@ public class LogInActivity extends AppCompatActivity {
 
                                     uploadDB();
                                     Log.e("custom", object.toString());
+                                    IntroActivity.loginOnOff=true;
+                                    overridePendingTransition(R.anim.disappear_search, R.anim.disappear_search);
+                                    finish();
+
                                 }
                             });
 
@@ -168,6 +204,8 @@ public class LogInActivity extends AppCompatActivity {
     };
 
 
+
+
     public void jsonParser() {
 
         try {
@@ -190,7 +228,6 @@ public class LogInActivity extends AppCompatActivity {
     public void saveStorageLoginData() {
         SharedPreferences preferences = getSharedPreferences("LoginData", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-
         editor.putString("id", loginId);
         editor.putString("name", loginName);
         editor.putString("email", loginEmail);
@@ -200,9 +237,9 @@ public class LogInActivity extends AppCompatActivity {
 
     public void loadStorageLoginData() {
         SharedPreferences preferences = getSharedPreferences("LoginData", MODE_PRIVATE);
-        loginId = preferences.getString("id", "로그인 정보 없음");
-        loginName = preferences.getString("name", "로그인 정보 없음");
-        loginEmail = preferences.getString("email", "로그인 정보 없음");
+        loginId = preferences.getString("id", "null");
+        loginName = preferences.getString("name", "null");
+        loginEmail = preferences.getString("email", "null");
         AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
         builder.setMessage(loginId + " /  " + loginName + " / " + loginEmail);
         AlertDialog dialog = builder.create();
@@ -219,7 +256,7 @@ public class LogInActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                new AlertDialog.Builder(LogInActivity.this).setMessage(response).setPositiveButton("OK", null).create().show();
+               //응답 메세지가 reponse이다 결과값..ex) email,name ...
             }
         }, new Response.ErrorListener() {
             @Override
@@ -246,7 +283,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                    new AlertDialog.Builder(LogInActivity.this).setMessage(response).setPositiveButton("OK", null).create().show();
+                new AlertDialog.Builder(LogInActivity.this).setMessage(response).setPositiveButton("OK", null).create().show();
 
             }
         }, new Response.ErrorListener() {

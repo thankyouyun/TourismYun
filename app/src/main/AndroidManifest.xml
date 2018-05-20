@@ -26,11 +26,9 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/g_key" />
-
 
         <activity android:name=".LogInActivity">
             <intent-filter>
@@ -72,11 +70,10 @@
         <activity
             android:name=".MainPage1FragBestItemViewOverActivity"
             android:theme="@style/Theme.MyDialog" />
-
-        <activity android:name=".MainPage1FragBestItemViewMapActivity"
-            android:theme="@style/Theme.MyDialog"/>
-
-
+        <activity
+            android:name=".MainPage1FragBestItemViewMapActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".MypageSetupActivity"></activity>
     </application>
 
 </manifest>

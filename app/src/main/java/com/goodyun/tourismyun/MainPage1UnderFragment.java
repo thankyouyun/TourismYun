@@ -147,6 +147,7 @@ public class MainPage1UnderFragment extends Fragment {
                             if (tagName.equals("item")) {
                                 items.add(item);
                                 item = null;
+
                                 publishProgress();
                             }
 
@@ -183,6 +184,7 @@ public class MainPage1UnderFragment extends Fragment {
 //               @Override
 //               public void run() {
 //                   underAdapter.notifyDataSetChanged();
+//                   setListViewHeightBasedOnChildren(lv);
 //                   synchronized (this){
 //                       this.notify();
 //                   }
@@ -193,11 +195,12 @@ public class MainPage1UnderFragment extends Fragment {
 //                getActivity().runOnUiThread(notifyDataChange);
 //                try{
 //                    notifyDataChange.wait();
+//
 //                }catch (Exception e){
 //
 //                }
 //
-//            }
+//            }//s2
 
         }//pro
 

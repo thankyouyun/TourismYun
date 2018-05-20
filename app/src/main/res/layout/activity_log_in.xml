@@ -15,6 +15,29 @@
     <!--android:layout_marginBottom="30dp"-->
     <!--android:layout_centerInParent="true"/>-->
 
+    <ImageView
+        android:id="@+id/login_logo"
+        android:layout_width="240dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/logo"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/joq"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:textColor="#333333"
+        android:layout_below="@id/login_logo"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:text="로그인을 통해 서울의 다양한 혜택을 누리세요 "
+        android:textSize="24sp"/>
+
 
     <Button
         android:id="@+id/btn_login_facebook"
@@ -25,19 +48,45 @@
         android:background="@drawable/facebookloginbutton"
         />
 
-    <Button
-        android:id="@+id/btn_login_uploadcheck"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:text="upload"
-        android:layout_marginVertical="8dp" />
 
-    <Button
-        android:id="@+id/btn_login_loadcheck"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentTop="true"
-        android:text="download"
-        android:layout_marginVertical="8dp" />
+    <TextView
+        android:id="@+id/login_out"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:textColor="@color/colorTabbar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:onClick="clickOut"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:text="지금은 그냥 볼래요.."
+        android:textSize="24sp"/>
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_login_auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:layout_above="@id/btn_login_facebook"-->
+        <!--android:text="auto"-->
+        <!--android:layout_marginVertical="8dp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_login_uploadcheck"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:text="upload"-->
+        <!--android:layout_marginVertical="8dp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_login_loadcheck"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:text="download"-->
+        <!--android:layout_marginVertical="8dp" />-->
 </RelativeLayout>

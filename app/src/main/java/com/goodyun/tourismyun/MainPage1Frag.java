@@ -1,25 +1,16 @@
 package com.goodyun.tourismyun;
 
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -59,7 +50,6 @@ public class MainPage1Frag extends Fragment {
 
 
 
-
         viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
@@ -74,13 +64,16 @@ public class MainPage1Frag extends Fragment {
     }//onCreate
 
 
-
     @Override
     public void onResume() {
         super.onResume();
-
     }//onresume
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        items.clear();
+    }
 
     public void reedRSS() {
         try {
@@ -187,6 +180,7 @@ public class MainPage1Frag extends Fragment {
         }
 
         //publishProgress()를 호출하면 실행되는 메소드 UI변경작업 가능
+
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);

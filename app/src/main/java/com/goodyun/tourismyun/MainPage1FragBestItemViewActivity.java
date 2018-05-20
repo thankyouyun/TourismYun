@@ -12,12 +12,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.MapUtils;
@@ -48,6 +52,9 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
     ArrayList<MainPage1FragBestItemView> items = new ArrayList<>();
     MainPage1FragBestItemViewAdapter adapter;
     TextView tvTitle;
+    Spinner spinner1, spinner2;
+    ArrayList<String> spinnerItem = new ArrayList<>();
+    ArrayAdapter<String> spAdapter;
     GoogleMap gmap;
     double lat, lon;
 
@@ -75,15 +82,33 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         lv.setAdapter(adapter);
 
+        spinner1 = findViewById(R.id.best_sp1);
+        spinner2 = findViewById(R.id.best_sp2);
 
+
+        spAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, spinnerItem);
+        spAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner1.setPrompt("코스장소 선택");
+        spinner1.setAdapter(spAdapter);
+
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//todo
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+
+//구글맵 .........................
         if (mapY != null) {
             lat = Double.parseDouble(mapY);
             lon = Double.parseDouble(mapX);
-
         }
-
-
-        //구글맵 .........................
         FragmentManager fragmentManager = getSupportFragmentManager();
         final SupportMapFragment mapFragment = (SupportMapFragment) fragmentManager.findFragmentById(R.id.map);
 
@@ -217,6 +242,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
                             } else if (tagName.equals("subname")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());
+                                spinnerItem.add(item.getTitle());
                             }
                             break;
                         case XmlPullParser.TEXT:
@@ -225,8 +251,6 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
                         case XmlPullParser.END_TAG:
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
-
-
                                 items.add(item);
                                 item = null;
 

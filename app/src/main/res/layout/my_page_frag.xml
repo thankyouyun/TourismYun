@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -58,76 +59,33 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!--<fragment-->
+    <!--android:id="@+id/new_fragment"-->
+    <!--android:name="com.goodyun.tourismyun.MypageFragLogIn"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="240dp"-->
+    <!--tools:layout="@layout/my_page_frag_login" />-->
+
+    <RelativeLayout
+        android:id="@+id/my_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-        <LinearLayout
-            android:id="@+id/change_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/tv_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:clickable="true"
-                android:text="LOGIN"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_inter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:clickable="true"
-                android:text="회원가입"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="#cccccc" />
 
-        <RelativeLayout
-            android:id="@+id/tv_my_map"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:clickable="true"
-                android:text="내 지도 보기"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:src="@android:drawable/ic_media_play" />
-
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/tv_my_recent"
@@ -155,31 +113,6 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/tv_my_answer"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:clickable="true"
-                android:text="문의하기"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:src="@android:drawable/ic_media_play" />
-
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/tv_my_setup"
@@ -194,6 +127,32 @@
                 android:layout_marginLeft="16dp"
                 android:clickable="true"
                 android:text="환경 설정"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:src="@android:drawable/ic_media_play" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tv_my_bers"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:clickable="true"
+                android:text="버전 : 1.0.1"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

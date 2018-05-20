@@ -11,48 +11,70 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="8dp"
             android:clickable="true"
             android:onClick="clickHeader"
-            android:src="@drawable/korea"
-            android:scaleType="centerCrop"
+            android:src="@drawable/logo"
+
             />
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/drawer_change"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+
             <TextView
-                android:id="@+id/tv_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:text="LOGIN"
+                android:id="@+id/tv_login_off"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorline"
                 android:clickable="true"
-                android:layout_gravity="center"/>
-            <TextView
-                android:id="@+id/tv_inter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:onClick="clickLogin"
+                android:text="로그인"
+                android:textColor="#333333"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:text="회원가입"
-                android:clickable="true"
-                android:layout_gravity="center"/>
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/logon_e_n"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_login_on_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="아이디"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_login_on_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="이름"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
 
+        </RelativeLayout>
 
-        </LinearLayout>
+
     </LinearLayout>
-
-
-
 
 
     <TextView
@@ -60,22 +82,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
         android:text="문의 : toutt123@gmail.com"
         android:textColor="#777777"
         android:textSize="20sp"
-        android:layout_marginRight="24dp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="24dp"
+        android:background="@color/colorline"
+        android:paddingLeft="24dp"
         android:text="추천서비스"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
 </LinearLayout>
 

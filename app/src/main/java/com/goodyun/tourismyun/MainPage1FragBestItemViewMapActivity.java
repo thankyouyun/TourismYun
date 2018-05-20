@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MainPage1FragBestItemViewMapActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class MainPage1FragBestItemViewMapActivity extends AppCompatActivity {
         title = getIntent().getStringExtra("Title");
 
         loc = new Location("");
-        Geocoder geocoder = new Geocoder(this);
+        Geocoder geocoder = new Geocoder(this, Locale.KOREA);
         List<Address> addr  =null;
 
         try {
