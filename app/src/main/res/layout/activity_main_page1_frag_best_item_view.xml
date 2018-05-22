@@ -150,6 +150,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="clickFAB"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/finish_fab"
         app:backgroundTint="#99ffffff"

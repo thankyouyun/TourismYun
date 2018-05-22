@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,7 +13,7 @@
             android:id="@+id/frag2_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+
             android:text="게시번호"
             android:layout_marginLeft="16dp"
             android:textColor="#222222"
@@ -22,7 +24,7 @@
             android:id="@+id/frag2_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+
             android:text="작성자"
             android:layout_toRightOf="@id/frag2_no"
             android:layout_marginLeft="16dp"
@@ -73,15 +75,8 @@
         android:gravity="center"
         android:text="여행한마디"
         android:textColor="#222222"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorline" />
 
 </LinearLayout>

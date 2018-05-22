@@ -1,22 +1,26 @@
 package com.goodyun.tourismyun;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -40,12 +44,14 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
     String id, title, img, mapX, mapY;
 
-
+    List<Address> spResultLocation;
+    Geocoder geocoder;
     ListView lv;
     ArrayList<MainPage1FragBestViewItem> items = new ArrayList<>();
     MainPage1FragBestItemViewAdapter adapter;
@@ -54,10 +60,12 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
     ArrayList<String> spinnerItem = new ArrayList<>();
     ArrayAdapter<String> spAdapter;
     GoogleMap gmap;
-    double lat, lon, stlat, stlon, arrlat, arrlon;
+    double lat, lon, stlat, stlon, arrlat, arrlon, stAddr, arrAddr;
     LocationManager locationManager;
 
     String st, arrival;
+
+    LinearLayout dialogKmap, dialogGmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +96,13 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         spinner1 = findViewById(R.id.best_sp1);
         spinner2 = findViewById(R.id.best_sp2);
+        try {
+            spinnerSetMethod();
+        } catch (Exception e) {
 
-        spinnerSetMethod();
+        }
 
-
+        geocoder = new Geocoder(this);
 //구글맵 .........................
         if (mapY != null)
 
@@ -107,11 +118,88 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
     public void clickRoad(View v) {
 
-        if (st.equals("현재위치") || arrival.equals("현재위치")) {
-            NowLocation();
+
+        //위치 찾기
+        NowLocation();
+
+        if (st.equals("현재위치")) {
+            stlat = lat;
+            stlon = lon;
+        } else {
+            try {
+                spResultLocation = geocoder.getFromLocationName(st, 1);
+                stlat = spResultLocation.get(0).getLatitude();
+                stlon = spResultLocation.get(0).getLongitude();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
-        
+
+        if (arrival.equals("현재위치")) {
+            arrlat = lat;
+            arrlon = lon;
+        } else {
+            try {
+                spResultLocation = geocoder.getFromLocationName(arrival, 1);
+                arrlat = spResultLocation.get(0).getLatitude();
+                arrlon = spResultLocation.get(0).getLongitude();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        //dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_map_custom, null);
+        builder.setView(view);
+
+        builder.setPositiveButton("닫기", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        dialogGmap = view.findViewById(R.id.dialog_gmap);
+        dialogKmap = view.findViewById(R.id.dialog_kmap);
+
+
+        //구글맵 열기
+        dialogGmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String uri = "http://maps.google.com/maps?saddr=" + stlat + "," + stlon + "&daddr=" + arrlat + "," + arrlon + "&hl=ko";
+                Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                it.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(it);
+
+
+            }
+        });
+
+
+        //카카오맵 열기
+        dialogKmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                try {
+                    String url = "daummaps://route?sp=" + stlat + "," + stlon + "&ep=" + arrlat + "," + arrlon + "&by=PUBLICTRANSIT";
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                } catch (Exception e) {
+                    String url = "market://details?id=net.daum.android.map";
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                }
+
+
+            }
+        });
+
 
         Toast.makeText(this, st + " / " + arrival + "/" + lat + "/" + lon, Toast.LENGTH_SHORT).show();
 
