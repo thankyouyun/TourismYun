@@ -73,7 +73,12 @@
         <activity
             android:name=".MainPage1FragBestItemViewMapActivity"
             android:theme="@style/Theme.MyDialog" />
-        <activity android:name=".MypageSetupActivity"></activity>
+        <activity android:name=".MypageSetupActivity" />
+        <activity android:name=".WriteBoardActivity" />
+        <activity
+            android:name=".CalendarActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".WebActivity"></activity>
     </application>
 
 </manifest>

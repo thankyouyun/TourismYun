@@ -1,7 +1,6 @@
 package com.goodyun.tourismyun;
 
 
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,13 +40,11 @@ public class MainPage1Frag extends Fragment {
         View view = inflater.inflate(R.layout.main_page1_frag, container, false);
 
 
-
         tvcount = view.findViewById(R.id.best_tv_count);
         viewPager = (AutoScrollViewPager) view.findViewById(R.id.auto_view);
 
 
         reedRSS();
-
 
 
         viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
@@ -72,7 +69,8 @@ public class MainPage1Frag extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        items.clear();
+
+
     }
 
     public void reedRSS() {
@@ -134,10 +132,10 @@ public class MainPage1Frag extends Fragment {
                             } else if (tagName.equals("firstimage")) {
                                 xpp.next();
                                 if (item != null) item.setImg(xpp.getText());
-                            }else if (tagName.equals("mapx")) {
+                            } else if (tagName.equals("mapx")) {
                                 xpp.next();
                                 if (item != null) item.setMapX(xpp.getText());
-                            }else if (tagName.equals("mapy")) {
+                            } else if (tagName.equals("mapy")) {
                                 xpp.next();
                                 if (item != null) item.setMapY(xpp.getText());
                             } else if (tagName.equals("title")) {
@@ -190,7 +188,9 @@ public class MainPage1Frag extends Fragment {
             viewPager.setAdapter(bestViewAdapter);
             viewPager.setInterval(3000);
             viewPager.startAutoScroll();
-            bestViewAdapter.notifyDataSetChanged();
+            synchronized (this) {
+                bestViewAdapter.notifyDataSetChanged();
+            }
 
 
 

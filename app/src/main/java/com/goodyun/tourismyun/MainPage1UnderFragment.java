@@ -34,7 +34,6 @@ public class MainPage1UnderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_page1_frag_under_fragment, container, false);
 
-
         lv = view.findViewById(R.id.listview);
         underAdapter = new MainPage1UnderAdapter(getContext(), items, getLayoutInflater());
         lv.setAdapter(underAdapter);
@@ -42,10 +41,14 @@ public class MainPage1UnderFragment extends Fragment {
 
         reedRSS();
 
-
         return view;
     }//on
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        items.clear();
+    }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -68,6 +71,7 @@ public class MainPage1UnderFragment extends Fragment {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }//ls
+
 
     public void reedRSS() {
         try {

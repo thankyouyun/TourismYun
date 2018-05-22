@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalendarActivity">
+
+    <CalendarView
+        android:id="@+id/write_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:firstDayOfWeek="1"
+        android:maxDate="12/31/2020"
+        android:minDate="01/01/2018">
+
+    </CalendarView>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorline"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:onClick="clickCho"
+            android:layout_below="@id/write_calendar"
+            android:padding="8dp"
+            android:text="선택완료"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+
+
+</RelativeLayout>

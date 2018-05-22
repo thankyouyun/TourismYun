@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-
-
-    <ListView
-        android:id="@+id/list_view"
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:id="@+id/frag2_refresh">
 
-    </ListView>
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:divider="@color/white">
+
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_marginRight="24dp"
         android:clickable="true"
         android:scaleType="centerCrop"
         android:src="@drawable/write"
         app:backgroundTint="#99ffffff"
         app:fabSize="mini"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="36dp"
         app:layout_anchor="@id/list_view"
         app:layout_anchorGravity="right|bottom" />
 

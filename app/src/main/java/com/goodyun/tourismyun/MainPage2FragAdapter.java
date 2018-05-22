@@ -11,14 +11,14 @@ import java.util.ArrayList;
 
 public class MainPage2FragAdapter extends BaseAdapter {
 
-    ArrayList<Items> items;
+    ArrayList<MainPage2Frag2DBItems> items;
     LayoutInflater inflater;
+    TextView title,tourdate,text,crdate,place,name,no;
 
-    public MainPage2FragAdapter(ArrayList<Items> members, LayoutInflater inflater) {
+    public MainPage2FragAdapter(ArrayList<MainPage2Frag2DBItems> members, LayoutInflater inflater) {
         this.items = members;
         this.inflater = inflater;
     }
-
 
 
     @Override
@@ -38,18 +38,26 @@ public class MainPage2FragAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        if( view == null ){
-            view = inflater.inflate(R.layout.main_page2_listview, null);
+        if (view == null) {
+            view = inflater.inflate(R.layout.main_page2_listview, viewGroup,false);
         }
-        Items item= items.get(position);
+        MainPage2Frag2DBItems item = items.get(position);
 
-        ImageView iv= view.findViewById(R.id.under_img);
-        TextView tvName= view.findViewById(R.id.item_tv_name);
-        TextView tvNation= view.findViewById(R.id.under_tv_subtitle);
+        tourdate = view.findViewById(R.id.frag2_tour_date);
+        crdate = view.findViewById(R.id.frag2_create_date);
+        place =view.findViewById(R.id.frag2_place);
+        text = view.findViewById(R.id.frag2_text);
+        name = view.findViewById(R.id.frag2_name);
+        no = view.findViewById(R.id.frag2_no);
 
-        iv.setImageResource(item.imgId);
-        tvName.setText(item.name);
-        tvNation.setText(item.nation);
+        no.setText(item.getNo());
+        tourdate.setText(item.getTourdate());
+        crdate.setText(item.getCrdate());
+        place.setText(item.getPlace());
+        text.setText(item.getText());
+        name.setText(item.getName());
+
+
 
         return view;
     }

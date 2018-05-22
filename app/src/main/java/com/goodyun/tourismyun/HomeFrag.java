@@ -11,27 +11,24 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class MainHomeFrag extends Fragment {
+public class HomeFrag extends Fragment {
 
     DrawerLayout drawerLayout;
 
@@ -41,7 +38,7 @@ public class MainHomeFrag extends Fragment {
     Toolbar toolbar;
     ViewPager pager;
     MainPage1Adapter adapter;
-
+    String link;
     ImageView iv;
 
 //    RelativeLayout drawerCh;
@@ -50,12 +47,12 @@ public class MainHomeFrag extends Fragment {
 
 
     LinearLayout logOn;
-    TextView tvLogin,tvEmail,tvName;
+    TextView tvLogin, tvEmail, tvName;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_home_frag, container, false);
-
 
 
         iv = view.findViewById(R.id.iv_logo);
@@ -78,7 +75,7 @@ public class MainHomeFrag extends Fragment {
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(),LogInActivity.class));
+                startActivity(new Intent(getActivity(), LogInActivity.class));
             }
         });
 
@@ -107,14 +104,9 @@ public class MainHomeFrag extends Fragment {
         });
 
 
-
-
-
-
-
-
         return view;
     }//onCreate
+
     @Override
     public void onPause() {
         super.onPause();
@@ -126,50 +118,35 @@ public class MainHomeFrag extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(IntroActivity.loginOnOff){
+        if (IntroActivity.loginOnOff) {
             logOn.setVisibility(View.VISIBLE);
             SharedPreferences preferences = getActivity().getSharedPreferences("LoginData", MODE_PRIVATE);
 
-            tvEmail.setText("E-mail\n"+preferences.getString("email", "null"));
-            tvName.setText("아이디\n"+preferences.getString("name", "null"));
-        }else{
+            tvEmail.setText("E-mail\n" + preferences.getString("email", "null"));
+            tvName.setText("아이디\n" + preferences.getString("name", "null"));
+        } else {
             tvLogin.setVisibility(View.VISIBLE);
 
         }
     }
 
 
-
     //네이게이션뷰리스너
     NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
+        Intent intent;
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             AlertDialog.Builder builder = new AlertDialog.Builder(((AppCompatActivity) getActivity()));
             switch (item.getItemId()) {
                 case R.id.menu_no1:
 
-                    builder.setTitle("Link Connect");
-                    builder.setIcon(android.R.drawable.ic_dialog_alert);
-                    builder.setMessage("VISIT SEOUL 서울가이드북 보기편한 링크를 연결하시겠습니까??");
 
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitseoul.net/map-guide-book")));
+                    link = "http://korean.visitseoul.net/map-guide-book";
+                    intent = new Intent(getActivity(), WebActivity.class);
+                    intent.putExtra("Link", link);
+                    startActivity(intent);
 
-                        }
-                    });
-
-
-                    builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            drawerLayout.closeDrawer(navigationView);
-                        }
-                    });
-                    AlertDialog webdialog = builder.create();
-                    webdialog.setCanceledOnTouchOutside(false);
-                    webdialog.show();
 
                     break;
 
@@ -179,7 +156,7 @@ public class MainHomeFrag extends Fragment {
                     builder.setIcon(android.R.drawable.ic_dialog_alert);
                     builder.setMessage("관광통역안내소에 친절한 무료전화를 연결하시겠습니까??");
 
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("'1330' 전화걸기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:1330"));
@@ -202,32 +179,16 @@ public class MainHomeFrag extends Fragment {
                     break;
 
                 case R.id.menu_no3:
+                    link = "http://korean.visitseoul.net/essential-info#";
 
-                    builder.setTitle("Link Connect");
-                    builder.setIcon(android.R.drawable.ic_dialog_alert);
-                    builder.setMessage("VISIT SEOUL 여행필수정보 링크를 연결하시겠습니까??");
-
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitseoul.net/essential-info#")));
-
-                        }
-                    });
-
-                    builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            drawerLayout.closeDrawer(navigationView);
-                        }
-                    });
-                    AlertDialog needdialog = builder.create();
-                    needdialog.setCanceledOnTouchOutside(false);
-                    needdialog.show();
+                    intent = new Intent(getActivity(), WebActivity.class);
+                    intent.putExtra("Link", link);
+                    startActivity(intent);
                     break;
 
                 case R.id.menu_no4:
-                    startActivity(new Intent(getActivity(),MypageSetupActivity.class));
+                    Toast.makeText(getActivity(), "환경설정", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(), MypageSetupActivity.class));
 
                     break;
                 case R.id.menu_no5:

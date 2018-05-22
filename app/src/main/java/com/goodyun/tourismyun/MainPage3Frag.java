@@ -41,10 +41,15 @@ public class MainPage3Frag extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-
         return view;
     }//onCreate
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        items.clear();
+    }
 
     public void reedRSS() {
         try {
@@ -149,8 +154,9 @@ public class MainPage3Frag extends Fragment {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-            adapter.notifyDataSetChanged();
-
+            synchronized (this) {
+                adapter.notifyDataSetChanged();
+            }
 
         }
 

@@ -5,25 +5,30 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
-import java.lang.reflect.Member;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainPage2Frag extends Fragment {
-    ArrayList<Items> members = new ArrayList<>();
+    ArrayList<MainPage2Frag2DBItems> dbitems = new ArrayList<>();
     ListView listView;
     MainPage2FragAdapter adapter;
     ScrollView scrollView;
     FloatingActionButton fab;
-
+    SwipeRefreshLayout refreshLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,37 +39,121 @@ public class MainPage2Frag extends Fragment {
             @Override
             public void onClick(View view) {
                 if (IntroActivity.loginOnOff) {
-                    Toast.makeText(getActivity(), "글을 쓰시오", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(), WriteBoardActivity.class));
                 } else {
                     startActivity(new Intent(getActivity(), LogInActivity.class));
                 }
             }
         });
 
-        members.add(new Items(R.drawable.korea, "김승윤", "서울 성북구"));
-        members.add(new Items(R.drawable.korea, "김승윤2", "서울 도봉구"));
-        members.add(new Items(R.drawable.korea, "김승윤3", "서울 노원구"));
-        members.add(new Items(R.drawable.korea, "김승윤4", "서울 중구"));
-        members.add(new Items(R.drawable.korea, "김승윤5", "서울 강남구"));
-        members.add(new Items(R.drawable.korea, "김승윤6", "서울 강동구"));
-        members.add(new Items(R.drawable.korea, "김승윤7", "서울 강서구"));
-        members.add(new Items(R.drawable.korea, "김승윤8", "서울 동대문구"));
-        members.add(new Items(R.drawable.korea, "김승윤9", "서울 성동구"));
-        members.add(new Items(R.drawable.korea, "김승윤0", "서울 강북구"));
-
+        loadDB();
 
         listView = view.findViewById(R.id.list_view);
-
-
-        adapter = new MainPage2FragAdapter(members, getLayoutInflater());
+        adapter = new MainPage2FragAdapter(dbitems, getLayoutInflater());
         listView.setAdapter(adapter);
 
-        setListViewHeightBasedOnChildren(listView);
+        refreshLayout = view.findViewById(R.id.frag2_refresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dbitems.clear();
+                loadDB();
+                refreshLayout.setRefreshing(false);
+            }
+        });
 
 
         return view;
     }//onCreate
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    void loadDB() {
+
+        //Volley library 사용...가능..
+
+        new Thread() {
+            @Override
+            public void run() {
+
+                String serverUrl = "http://toutt.dothome.co.kr/tour/boardloadDb.php";
+
+                try {
+                    URL url = new URL(serverUrl);
+
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setDoInput(true);
+                    connection.setUseCaches(false);
+
+                    InputStream is = connection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                    BufferedReader reader = new BufferedReader(isr);
+
+                    StringBuffer buffer = new StringBuffer();
+                    String line = reader.readLine();
+
+                    while (true) {
+                        buffer.append(line);
+
+                        line = reader.readLine();
+                        if (line == null) break;
+
+                        buffer.append("\n");
+                    }
+
+                    //읽어온 데이터 문자열에서 db의 row(레코드)별로 배열로 분리하기.
+                    String[] rows = buffer.toString().split(";");
+
+                    dbitems.clear();
+                    for (String row : rows) {
+                        String[] datas = row.split("&");
+                        if (datas.length != 8) continue;
+
+                        String no = datas[0];
+                        String id = datas[1];
+                        String title = datas[2];
+                        String datecr = datas[3];
+                        String name = datas[4];
+                        String date = datas[5];
+                        String place = datas[6];
+                        String text = datas[7];
+
+
+                        dbitems.add(0, new MainPage2Frag2DBItems(no, id, title, datecr, name, date, place, text));
+
+                        //리스트뷰 갱신!!
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                adapter.notifyDataSetChanged();
+                                setListViewHeightBasedOnChildren(listView);
+
+                            }
+                        });
+
+                    }
+
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+
+        }.start();
+
+
+    }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -73,7 +162,7 @@ public class MainPage2Frag extends Fragment {
             return;
         }
 
-        int totalHeight = 0;
+        int totalHeight = 240;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
 
         for (int i = 0; i < listAdapter.getCount(); i++) {

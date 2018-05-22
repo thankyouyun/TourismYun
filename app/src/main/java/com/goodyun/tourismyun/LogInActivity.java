@@ -240,12 +240,6 @@ public class LogInActivity extends AppCompatActivity {
         loginId = preferences.getString("id", "null");
         loginName = preferences.getString("name", "null");
         loginEmail = preferences.getString("email", "null");
-        AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
-        builder.setMessage(loginId + " /  " + loginName + " / " + loginEmail);
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-
     }
 
     public void uploadDB() {

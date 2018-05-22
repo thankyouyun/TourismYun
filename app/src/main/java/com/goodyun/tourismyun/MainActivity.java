@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        frags[0] = new MainHomeFrag();
+        frags[0] = new HomeFrag();
         frags[1] = new RoadFrag();
         frags[2] = new MyPageFrag();
         frags[3] = new RecentFrag();
