@@ -53,6 +53,7 @@ public class MainPage1FragMiddle5 extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+
                 switch (position) {
                     case 0:
                         items.clear();

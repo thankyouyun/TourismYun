@@ -1,30 +1,28 @@
 package com.goodyun.tourismyun;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.support.design.widget.CoordinatorLayout;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.common.util.MapUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -49,14 +47,17 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
 
     ListView lv;
-    ArrayList<MainPage1FragBestItemView> items = new ArrayList<>();
+    ArrayList<MainPage1FragBestViewItem> items = new ArrayList<>();
     MainPage1FragBestItemViewAdapter adapter;
     TextView tvTitle;
     Spinner spinner1, spinner2;
     ArrayList<String> spinnerItem = new ArrayList<>();
     ArrayAdapter<String> spAdapter;
     GoogleMap gmap;
-    double lat, lon;
+    double lat, lon, stlat, stlon, arrlat, arrlon;
+    LocationManager locationManager;
+
+    String st, arrival;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         mapX = intent.getStringExtra("MapX");
         mapY = intent.getStringExtra("MapY");
-
+        spAdapter = new ArrayAdapter<String>(this, R.layout.spinner_selected, spinnerItem);
         reedRSS();
         tvTitle = findViewById(R.id.item_vest_title);
         tvTitle.setText(title);
@@ -82,19 +83,60 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         lv.setAdapter(adapter);
 
+
+        //spinner
+
         spinner1 = findViewById(R.id.best_sp1);
         spinner2 = findViewById(R.id.best_sp2);
 
+        spinnerSetMethod();
 
-        spAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, spinnerItem);
+
+//구글맵 .........................
+        if (mapY != null)
+
+        {
+            lat = Double.parseDouble(mapY);
+            lon = Double.parseDouble(mapX);
+        }
+
+        setMap();
+
+
+    }//onCreate
+
+    public void clickRoad(View v) {
+
+        if (st.equals("현재위치") || arrival.equals("현재위치")) {
+            NowLocation();
+
+        }
+        
+
+        Toast.makeText(this, st + " / " + arrival + "/" + lat + "/" + lon, Toast.LENGTH_SHORT).show();
+
+    }//clickRoad
+
+    public void spinnerSetMethod() {
+
+
         spAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinner1.setPrompt("코스장소 선택");
+        spinner1.setPrompt("출발지 선택");
+        spinner2.setPrompt("도착지 선택");
+        spinner1.setSelected(true);
+        spinner2.setSelected(true);
+        spAdapter.add("현재위치");
         spinner1.setAdapter(spAdapter);
+        spinner2.setAdapter(spAdapter);
+        spinner1.setSelection(0);
+        spinner2.setSelection(1);
 
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//todo
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+
+                Toast.makeText(MainPage1FragBestItemViewActivity.this, spinnerItem.get(position).toString(), Toast.LENGTH_SHORT).show();
+                st = spinnerItem.get(position).toString();
 
             }
 
@@ -104,11 +146,25 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         });
 
 
-//구글맵 .........................
-        if (mapY != null) {
-            lat = Double.parseDouble(mapY);
-            lon = Double.parseDouble(mapX);
-        }
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(MainPage1FragBestItemViewActivity.this, position + "spinner2", Toast.LENGTH_SHORT).show();
+                arrival = spinnerItem.get(position).toLowerCase();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }//spinner method
+
+
+    public void setMap() {
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         final SupportMapFragment mapFragment = (SupportMapFragment) fragmentManager.findFragmentById(R.id.map);
 
@@ -149,8 +205,8 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
             }
         });//gmap
 
+    }//gmap setup
 
-    }//onCreate
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -172,7 +228,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();
-    }
+    }//listview size method
 
 
     public void reedRSS() {
@@ -191,7 +247,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         }
 
 
-    }
+    }//reed
 
 
     class RssFeedTask extends AsyncTask<URL, Void, String> {
@@ -212,7 +268,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
                 int eventType = xpp.next();
 
-                MainPage1FragBestItemView item = null;
+                MainPage1FragBestViewItem item = null;
                 String tagName = null;
 
 
@@ -229,7 +285,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
-                                item = new MainPage1FragBestItemView();
+                                item = new MainPage1FragBestViewItem();
                             } else if (tagName.equals("subcontentid")) {
                                 xpp.next();
                                 if (item != null) item.setSubid(xpp.getText());
@@ -242,7 +298,15 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
                             } else if (tagName.equals("subname")) {
                                 xpp.next();
                                 if (item != null) item.setTitle(xpp.getText());
-                                spinnerItem.add(item.getTitle());
+
+                                String tmpTitle = item.getTitle();
+                                if (tmpTitle.contains("점심식사")) {
+                                    tmpTitle = tmpTitle.replace("점심식사", "").replace("(", "").replace(")", "");
+                                } else if (tmpTitle.contains("식사")) {
+                                    tmpTitle = tmpTitle.replace("식사", "").replace("(", "").replace(")", "");
+                                }
+
+                                spAdapter.add(tmpTitle);
                             }
                             break;
                         case XmlPullParser.TEXT:
@@ -281,7 +345,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
 
-
+            spAdapter.notifyDataSetChanged();
             adapter.notifyDataSetChanged();
             setListViewHeightBasedOnChildren(lv);
         }
@@ -289,8 +353,35 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
     }//RssFeedTask
 
+    public void NowLocation() {
+        //현재 위치 가져오기
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "퍼미션 체크", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //현재 내 위치 얻어오기
+        Location location = null;
+
+        if (locationManager.isProviderEnabled("gps")) {
+            location = locationManager.getLastKnownLocation("gps");
+        } else if (locationManager.isProviderEnabled("network")) {
+            location = locationManager.getLastKnownLocation("network");
+        }
+
+        if (location == null) {
+            Toast.makeText(MainPage1FragBestItemViewActivity.this, "위치를 못찾겠습니다", Toast.LENGTH_SHORT).show();
+        } else {
+            //위도, 경도 얻어오기
+            lat = location.getLatitude();
+            lon = location.getLongitude();
+
+        }
+
+    }//nowLocation
 
     public void clickFAB(View v) {
         finish();
-    }
+    }//FAB
 }

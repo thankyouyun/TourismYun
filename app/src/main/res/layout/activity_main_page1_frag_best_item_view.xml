@@ -63,30 +63,73 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="72dp"
+                android:layout_margin="8dp"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/best_sp1"
-                    android:layout_width="120dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:prompt="@string/spinner_prompt"
-                    >
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
 
-                </Spinner>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
 
-                <Spinner
-                    android:id="@+id/best_sp2"
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="출발지 : "
+                            android:textSize="16sp" />
 
-                </Spinner>
+                        <Spinner
+                            android:id="@+id/best_sp1"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:spinnerMode="dialog">
+
+                        </Spinner>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="도착지 : "
+                            android:textSize="16sp" />
+
+                        <Spinner
+                            android:id="@+id/best_sp2"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:spinnerMode="dialog">
+
+                        </Spinner>
+
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="길찾기"/>
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/colorTabbar"
+                    android:onClick="clickRoad"
+                    android:text="길찾기" />
+
             </LinearLayout>
 
 
@@ -100,6 +143,7 @@
 
         </LinearLayout>
     </ScrollView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"

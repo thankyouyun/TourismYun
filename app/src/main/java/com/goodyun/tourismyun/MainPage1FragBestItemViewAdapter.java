@@ -4,12 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.os.Build;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +22,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
 
 
-    ArrayList<MainPage1FragBestItemView> items;
-    MainPage1FragBestItemView item;
+    ArrayList<MainPage1FragBestViewItem> items;
+    MainPage1FragBestViewItem item;
     LayoutInflater inflater;
 
     CircleImageView iv;
@@ -39,7 +34,7 @@ public class MainPage1FragBestItemViewAdapter extends BaseAdapter {
 
     Context context;
     String title;
-    public MainPage1FragBestItemViewAdapter(Context context, ArrayList<MainPage1FragBestItemView> items, LayoutInflater inflater) {
+    public MainPage1FragBestItemViewAdapter(Context context, ArrayList<MainPage1FragBestViewItem> items, LayoutInflater inflater) {
         this.items = items;
         this.inflater = inflater;
         this.context = context;

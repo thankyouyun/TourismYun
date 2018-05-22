@@ -1,8 +1,8 @@
 package com.goodyun.tourismyun;
 
-public class MainPage1FragBestItemView {
+public class MainPage1FragBestViewItem {
 
-    public MainPage1FragBestItemView() {
+    public MainPage1FragBestViewItem() {
 
     }
 
@@ -12,7 +12,7 @@ public class MainPage1FragBestItemView {
     String img;
     String overView;
 
-    public MainPage1FragBestItemView(String subid, String title, String img, String overView) {
+    public MainPage1FragBestViewItem(String subid, String title, String img, String overView) {
         Subid = subid;
         this.title = title;
         this.img = img;

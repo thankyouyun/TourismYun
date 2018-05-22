@@ -4,12 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:visibility="gone">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="로드 액티비티"/>
+        android:layout_height="400dp"
+        android:src="@drawable/seoul_map" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="내가 간 곳에 색칠이 되어지는 맵을 준비중입니다.. \n coming soon... \n감사합니다" />
 
 
 </LinearLayout>
