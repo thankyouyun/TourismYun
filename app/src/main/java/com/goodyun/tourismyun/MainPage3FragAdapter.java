@@ -78,7 +78,7 @@ public class MainPage3FragAdapter extends RecyclerView.Adapter {
                         e.printStackTrace();
                     }
 
-                    Intent intent = new Intent(context,MainPage3FragItemIvewActivity.class);
+                    Intent intent = new Intent(context,MainPage3FragItemViewActivity.class);
                     intent.putExtra("Id",items.get(getLayoutPosition()).getId());
                     intent.putExtra("Img",items.get(getLayoutPosition()).getImg());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

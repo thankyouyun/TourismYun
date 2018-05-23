@@ -62,7 +62,7 @@
             android:name=".MainPage1FragMiddle6ItemViewActivity"
             android:theme="@style/Theme.MyDialog" />
         <activity
-            android:name=".MainPage3FragItemIvewActivity"
+            android:name=".MainPage3FragItemViewActivity"
             android:theme="@style/Theme.MyDialog" />
         <activity android:name=".MainPage1FragBestItemViewActivity" />
         <activity

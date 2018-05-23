@@ -58,12 +58,13 @@ public class MainPage1FragMiddle1ItemViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page1_frag_middle1_item_view);
 
-        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
-        typeSet = 12;
+
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
         img = intent.getStringExtra("Img");
 
+        typeSet = 1;
+        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
         loadSQLlite.insert(id, img, typeSet);
 
 
@@ -158,8 +159,6 @@ public class MainPage1FragMiddle1ItemViewActivity extends AppCompatActivity {
                             if (tagName.equals("item")) {
                                 itemImg.add(item);
                                 item = null;
-
-
                                 publishProgress();
                             }
 
@@ -186,6 +185,7 @@ public class MainPage1FragMiddle1ItemViewActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
+
             adapter.notifyDataSetChanged();
         }
 

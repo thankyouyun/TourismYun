@@ -62,11 +62,12 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
     GoogleMap gmap;
     double lat, lon, stlat, stlon, arrlat, arrlon, stAddr, arrAddr;
     LocationManager locationManager;
-    int typeSet;
     String st, arrival;
 
     LinearLayout dialogKmap, dialogGmap;
 
+    LoadSQLlite loadSQLlite;
+    int typeSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,11 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         mapX = intent.getStringExtra("MapX");
         mapY = intent.getStringExtra("MapY");
+
         typeSet = 25;
+        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
+        loadSQLlite.insert(id, img, typeSet);
+
         spAdapter = new ArrayAdapter<String>(this, R.layout.spinner_selected, spinnerItem);
         spAdapter.add("현재위치");
 

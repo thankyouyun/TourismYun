@@ -1,15 +1,17 @@
 package com.goodyun.tourismyun;
 
-
 import android.os.AsyncTask;
+
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -21,39 +23,27 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
+public class SearchViewFrag extends Fragment {
 
+    String ask;
 
-public class MainPage1Frag extends Fragment {
-
-    AutoScrollViewPager viewPager;
-    MainPage1FragBestViewAdapter bestViewAdapter;
-
-    TextView tvcount;
-
-    ArrayList<MainPage1FragMiddlesItem> items = new ArrayList<>();
-
+    ArrayList<SearchReadItem> items = new ArrayList<>();
+    SearchViewFragAdapter adapter;
+    ListView lv;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_page1_frag, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.sear_view_frag, container, false);
 
+        if (getArguments() != null) {
+            ask = getArguments().getString("ask");
+            reedRSS();
+        }
 
-        tvcount = view.findViewById(R.id.best_tv_count);
-        viewPager = (AutoScrollViewPager) view.findViewById(R.id.auto_view);
-
-
-        viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(View page, float position) {
-
-                tvcount.setText((viewPager.getCurrentItem() + 1) + " / " + items.size());
-
-            }
-        });
-
-
+        lv = view.findViewById(R.id.search_view_list);
+        adapter = new SearchViewFragAdapter(items, getLayoutInflater(), getActivity());
+        lv.setAdapter(adapter);
 
 
 
@@ -61,18 +51,16 @@ public class MainPage1Frag extends Fragment {
     }//onCreate
 
     @Override
-    public void onStart() {
-        super.onStart();
-        
-        reedRSS();
+    public void onResume() {
+        super.onResume();
 
     }
 
-
     public void reedRSS() {
         try {
-            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&contentTypeId=25&areaCode=1&sigunguCode=&cat1=C01&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=B&numOfRows=12&pageNo=1");
+            URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?ServiceKey=4obyapiUvJpvzT21LABYnbbPsaP4U0r0FRjGE%2FqJU3AkIiV4A0OtVejbos05oDZ8M7MOJxL2G9IS%2BnpuSNgeog%3D%3D&keyword=" + ask + "&areaCode=1&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=P&numOfRows=12&pageNo=1");
 
+            Log.e("mas",url.toString());
             RssFeedTask task = new RssFeedTask();
 
             task.execute(url);
@@ -104,7 +92,7 @@ public class MainPage1Frag extends Fragment {
 
                 int eventType = xpp.next();
 
-                MainPage1FragMiddlesItem item = null;
+                SearchReadItem item = null;
                 String tagName = null;
 
 
@@ -121,10 +109,13 @@ public class MainPage1Frag extends Fragment {
 
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
-                                item = new MainPage1FragMiddlesItem();
+                                item = new SearchReadItem();
                             } else if (tagName.equals("contentid")) {
                                 xpp.next();
                                 if (item != null) item.setId(xpp.getText());
+                            } else if (tagName.equals("contenttypeid")) {
+                                xpp.next();
+                                if (item != null) item.setImg(xpp.getText());
                             } else if (tagName.equals("firstimage")) {
                                 xpp.next();
                                 if (item != null) item.setImg(xpp.getText());
@@ -145,12 +136,10 @@ public class MainPage1Frag extends Fragment {
                         case XmlPullParser.END_TAG:
                             tagName = xpp.getName();
                             if (tagName.equals("item")) {
-                                if (items.size() < 12) {
-                                    items.add(item);
-                                    item = null;
-                                    publishProgress();
-                                }
+                                items.add(item);
+                                item = null;
 
+                                publishProgress();
                             }
 
                             break;
@@ -173,26 +162,42 @@ public class MainPage1Frag extends Fragment {
             return "파싱종료";
         }
 
-        //publishProgress()를 호출하면 실행되는 메소드 UI변경작업 가능
 
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
 
 
-
-            bestViewAdapter = new MainPage1FragBestViewAdapter(getActivity().getApplicationContext(), items);
-            viewPager.setAdapter(bestViewAdapter);
-            viewPager.setInterval(3000);
-            viewPager.startAutoScroll();
-            bestViewAdapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
+            setListViewHeightBasedOnChildren(lv);
 
 
-
-        }
+        }//pro
 
 
     }//RssFeedTask
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 240;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }//ls
 
 
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -17,7 +16,7 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<RecentItem> items;
-
+    Intent intent;
 
     public RecentFragAdapter(Context context, ArrayList<RecentItem> items) {
         this.context = context;
@@ -28,7 +27,7 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View itemView = inflater.inflate(R.layout.recent_frag_adapter_item,parent,false);
+        View itemView = inflater.inflate(R.layout.recent_frag_adapter_item, parent, false);
 
         VH holder = new VH(itemView);
 
@@ -51,10 +50,8 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
     }
 
 
-
-    class VH extends RecyclerView.ViewHolder{
+    class VH extends RecyclerView.ViewHolder {
         ImageView iv;
-
 
 
         public VH(final View itemView) {
@@ -65,13 +62,41 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context,MainPage1FragMiddle1ItemViewActivity.class);
-                    intent.putExtra("Id",items.get(getLayoutPosition()).getId());
+
+                    switch (items.get(getLayoutPosition()).getType()) {
+                        case 1:
+                            intent = new Intent(context, MainPage1FragMiddle1ItemViewActivity.class);
+                            break;
+                        case 2:
+                            intent = new Intent(context, MainPage1FragMiddle2ItemViewActivity.class);
+                            break;
+                        case 3:
+                            intent = new Intent(context, MainPage1FragMiddle3ItemViewActivity.class);
+                            break;
+                        case 4:
+                            intent = new Intent(context, MainPage1FragMiddle4ItemViewActivity.class);
+                            break;
+                        case 5:
+                            intent = new Intent(context, MainPage1FragMiddle5ItemViewActivity.class);
+                            break;
+                        case 6:
+                            intent = new Intent(context, MainPage1FragMiddle6ItemViewActivity.class);
+                            break;
+                        case 25:
+                            intent = new Intent(context, MainPage1FragBestItemViewActivity.class);
+                            break;
+                        case 26:
+                            intent = new Intent(context, MainPage3FragItemViewActivity.class);
+                            break;
+                    }
+
+
+                    intent.putExtra("Id", items.get(getLayoutPosition()).getId());
                     context.startActivity(intent);
+
 
                 }
             });
-
 
 
         }

@@ -61,7 +61,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_login_on_email"

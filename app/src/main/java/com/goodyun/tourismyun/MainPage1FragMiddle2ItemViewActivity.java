@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
-    String id,img, telName, addr;
+    String id, img, telName, addr;
 
     TextView tvOver, tvTel, tvSubOver, tvInforName;
     MainPage1FragMiddle2ItemVIewItems item;
@@ -45,13 +45,22 @@ public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
     GoogleMap gmap;
     double lat, lon;
 
+    LoadSQLlite loadSQLlite;
+    int typeSet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page1_frag_middle2_item_view);
+
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
         img = intent.getStringExtra("Img");
+        typeSet = 2;
+        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
+        loadSQLlite.insert(id, img, typeSet);
+
+
         reedRSS();
         reedRSSImgMenu();
         reedSubInfor();
@@ -581,9 +590,10 @@ public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
             if (item.getFee().contains("br")) {
                 item.setFee(item.getFee().replace("<br />", ""));
             }
-
-            if (item.getEvent().contains("br")) {
-                item.setEvent(item.getEvent().replace("<br />", ""));
+            if (item.getEvent() != null) {
+                if (item.getEvent().contains("br")) {
+                    item.setEvent(item.getEvent().replace("<br />", ""));
+                }
             }
 
             tvSubOver.setText("주최 : " + item.getSpon() + "\n\n장소 : " + item.getPlase() + "\n\n상세주소 : " + addr + "\n\n시작일 : " + item.getStdate() + "\n\n종료일 :" + item.getEnddate() +

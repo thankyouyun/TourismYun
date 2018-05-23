@@ -112,6 +112,7 @@ public class MainPage1UnderAdapter extends BaseAdapter {
                 }
                 Intent intent = new Intent(context,MainPage1FragBestItemViewActivity.class);
                 intent.putExtra("Id",items.get(position).getId());
+                intent.putExtra("Img",items.get(position).getImg());
                 intent.putExtra("Title",items.get(position).getTitle());
                 intent.putExtra("Addr",addr);
                 intent.putExtra("MapX",items.get(position).getMapX());

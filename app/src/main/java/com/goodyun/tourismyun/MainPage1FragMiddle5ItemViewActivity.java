@@ -30,7 +30,8 @@ public class MainPage1FragMiddle5ItemViewActivity extends AppCompatActivity {
     MainPage1FragMiddleItemViewAdapter adapter;
     ArrayList<String> itemImg = new ArrayList<>();
 
-
+    LoadSQLlite loadSQLlite;
+    int typeSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,11 @@ public class MainPage1FragMiddle5ItemViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
+        img = intent.getStringExtra("Img");
 
+        typeSet = 5;
+        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
+        loadSQLlite.insert(id, img, typeSet);
 
         reedRSS();
         reedRSSImgMenu();

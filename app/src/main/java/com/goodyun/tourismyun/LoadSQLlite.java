@@ -42,19 +42,30 @@ public class LoadSQLlite extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + tableName, null);
 
-        RecentItem item = new RecentItem();
+        RecentItem item;
+
 
         while (cursor.moveToNext()) {
+            item = new RecentItem();
 
             item.setNo(cursor.getInt(0));
             item.setId(cursor.getString(1));
             item.setImg(cursor.getString(2));
             item.setType( cursor.getInt(3));
             items.add(item);
+            item = null;
 
         }
 
         return items;
+    }//getResult
+
+
+    public void delete(){
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("delete from "+tableName);
+        db.close();
     }
 
 

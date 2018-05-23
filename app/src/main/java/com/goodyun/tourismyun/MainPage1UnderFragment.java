@@ -39,6 +39,9 @@ public class MainPage1UnderFragment extends Fragment {
         lv.setAdapter(underAdapter);
 
 
+
+
+
         return view;
     }//on
 

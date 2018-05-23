@@ -1,55 +1,35 @@
 package com.goodyun.tourismyun;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class SearchActivity extends AppCompatActivity {
 
-    TextView tvEmpty;
+
     EditText editText;
-    ListView lv;
-    ArrayList<SearchReadItem> items = new ArrayList<>();
-    SearchReadAdapter adapter;
+
+    Fragment[] frags = new Fragment[2];
+    FragmentTransaction transaction;
+
     Button btn;
-    String date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.search);
 
         btn = findViewById(R.id.btn);
         editText = findViewById(R.id.edit);
-        date = DateFormat.getDateInstance().format(new Date());
-        items.add(new SearchReadItem("기록1", date));
-        items.add(new SearchReadItem("기록2", date));
-        items.add(new SearchReadItem("기록3", date));
-        items.add(new SearchReadItem("기록4", date));
-
-        lv = findViewById(R.id.list_view);
-        adapter = new SearchReadAdapter(items, getLayoutInflater());
-        lv.setAdapter(adapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(SearchActivity.this, position + "번째 리스트를 클릭했습니다", Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
 
         editText.setOnKeyListener(new EditKeyListener());
@@ -62,21 +42,31 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-        tvEmpty = findViewById(R.id.tv_empty_list);
-        lv.setEmptyView(tvEmpty);
+
+
+        //////////////////////
+        frags[0] = new SearchReadFrag();
+
+
+
 
 
     }//create
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
     //엔터 입력시
-    class EditKeyListener implements View.OnKeyListener{
+    class EditKeyListener implements View.OnKeyListener {
 
 
         @Override
         public boolean onKey(View view, int keycode, KeyEvent keyEvent) {
 
-            if(keycode==KeyEvent.KEYCODE_ENTER){
+            if (keycode == KeyEvent.KEYCODE_ENTER) {
                 searchGo();
                 return true;
             }
@@ -86,25 +76,30 @@ public class SearchActivity extends AppCompatActivity {
 
 
     //서치버튼 눌렀을때 메소드
-    public void searchGo(){
+    public void searchGo() {
+        String s = editText.getText().toString().replace(" ", "");
 
-        String s = editText.getText().toString().replace(" ","");
-
-        if (!s.equals("")) {
-            s = editText.getText().toString();
-            SearchReadItem item = new SearchReadItem(s + "", date);
-
-            items.add(item);
-            adapter.notifyDataSetChanged();
-            lv.setSelection(items.size() - 1);
-
-            editText.setText("");
-
-        }else{
-            Toast.makeText(SearchActivity.this, "검색를 입력해주세요", Toast.LENGTH_SHORT).show();
-            editText.setText("");
+        if (s.equals("")) {
+            Toast.makeText(SearchActivity.this, "검색어를 입력해주세요", Toast.LENGTH_SHORT).show();
+            return;
         }
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+
+
+        frags[1] = new SearchViewFrag();
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.search_change, frags[1]);
+        transaction.commit();
+        Bundle bundle = new Bundle(1);
+        bundle.putString("ask", s);
+        frags[1].setArguments(bundle);
+
+
+
+
     }
+
     public void clickback(View v) {
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

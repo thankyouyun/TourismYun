@@ -47,6 +47,9 @@ public class MainPage1FragMiddle4ItemViewActivity extends AppCompatActivity {
 
     GoogleMap gmap;
     double lat, lon;
+
+    LoadSQLlite loadSQLlite;
+    int typeSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,10 @@ public class MainPage1FragMiddle4ItemViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
         img = intent.getStringExtra("Img");
+
+        typeSet = 4;
+        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
+        loadSQLlite.insert(id, img, typeSet);
 
         reedRSS();
 

@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
-public class MainPage3FragItemIvewActivity extends AppCompatActivity {
+public class MainPage3FragItemViewActivity extends AppCompatActivity {
 
     String id,img, addr, title;
 
@@ -45,6 +45,8 @@ public class MainPage3FragItemIvewActivity extends AppCompatActivity {
     GoogleMap gmap;
     double lat, lon;
 
+    LoadSQLlite loadSQLlite;
+    int typeSet;
 
 
     @Override
@@ -61,6 +63,12 @@ public class MainPage3FragItemIvewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
         img = intent.getStringExtra("Img");
+
+        typeSet = 26;
+        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
+        loadSQLlite.insert(id, img, typeSet);
+
+
         reedRSS();
         reedInforSub();
         viewPager = findViewById(R.id.item_view_auto_tour);
@@ -333,7 +341,7 @@ public class MainPage3FragItemIvewActivity extends AppCompatActivity {
                     settings.setMyLocationButtonEnabled(true);
                     settings.setCompassEnabled(true);
 
-                    if (ActivityCompat.checkSelfPermission(MainPage3FragItemIvewActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainPage3FragItemIvewActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(MainPage3FragItemViewActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainPage3FragItemViewActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
                     gmap.setMyLocationEnabled(true);
@@ -447,7 +455,7 @@ public class MainPage3FragItemIvewActivity extends AppCompatActivity {
             if (itemImg.size() == 0) {
                 viewPager.setVisibility(View.GONE);
             }
-            adapter = new MainPage1FragMiddleItemViewAdapter(MainPage3FragItemIvewActivity.this, itemImg);
+            adapter = new MainPage1FragMiddleItemViewAdapter(MainPage3FragItemViewActivity.this, itemImg);
             viewPager.setAdapter(adapter);
             viewPager.setInterval(1800);
             viewPager.startAutoScroll();
