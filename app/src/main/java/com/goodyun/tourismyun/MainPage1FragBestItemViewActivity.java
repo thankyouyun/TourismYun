@@ -83,6 +83,9 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         mapX = intent.getStringExtra("MapX");
         mapY = intent.getStringExtra("MapY");
         spAdapter = new ArrayAdapter<String>(this, R.layout.spinner_selected, spinnerItem);
+        spAdapter.add("현재위치");
+
+
         reedRSS();
         tvTitle = findViewById(R.id.item_vest_title);
         tvTitle.setText(title);
@@ -91,16 +94,12 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         lv.setAdapter(adapter);
 
-
         //spinner
-
         spinner1 = findViewById(R.id.best_sp1);
         spinner2 = findViewById(R.id.best_sp2);
-        try {
-            spinnerSetMethod();
-        } catch (Exception e) {
 
-        }
+        spinnerSetMethod();
+
 
         geocoder = new Geocoder(this);
 //구글맵 .........................
@@ -160,7 +159,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         builder.setPositiveButton("닫기", null);
 
-        AlertDialog dialog = builder.create();
+        final AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
@@ -172,6 +171,8 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         dialogGmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                dialog.dismiss();
                 String uri = "http://maps.google.com/maps?saddr=" + stlat + "," + stlon + "&daddr=" + arrlat + "," + arrlon + "&hl=ko";
                 Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 it.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
@@ -189,31 +190,35 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
 
                 try {
+                    dialog.dismiss();
                     String url = "daummaps://route?sp=" + stlat + "," + stlon + "&ep=" + arrlat + "," + arrlon + "&by=PUBLICTRANSIT";
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                 } catch (Exception e) {
+                    dialog.dismiss();
                     String url = "market://details?id=net.daum.android.map";
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                 }
-
 
             }
         });
 
 
-        Toast.makeText(this, st + " / " + arrival + "/" + lat + "/" + lon, Toast.LENGTH_SHORT).show();
-
     }//clickRoad
 
     public void spinnerSetMethod() {
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         spAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner1.setPrompt("출발지 선택");
         spinner2.setPrompt("도착지 선택");
         spinner1.setSelected(true);
         spinner2.setSelected(true);
-        spAdapter.add("현재위치");
+
         spinner1.setAdapter(spAdapter);
         spinner2.setAdapter(spAdapter);
         spinner1.setSelection(0);
@@ -223,7 +228,6 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
-                Toast.makeText(MainPage1FragBestItemViewActivity.this, spinnerItem.get(position).toString(), Toast.LENGTH_SHORT).show();
                 st = spinnerItem.get(position).toString();
 
             }
@@ -237,7 +241,6 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(MainPage1FragBestItemViewActivity.this, position + "spinner2", Toast.LENGTH_SHORT).show();
                 arrival = spinnerItem.get(position).toLowerCase();
             }
 

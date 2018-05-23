@@ -105,7 +105,11 @@ public class MainPage1UnderAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    Thread.sleep(800);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(context,MainPage1FragBestItemViewActivity.class);
                 intent.putExtra("Id",items.get(position).getId());
                 intent.putExtra("Title",items.get(position).getTitle());

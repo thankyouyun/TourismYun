@@ -44,9 +44,6 @@ public class MainPage1Frag extends Fragment {
         viewPager = (AutoScrollViewPager) view.findViewById(R.id.auto_view);
 
 
-        reedRSS();
-
-
         viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
@@ -57,21 +54,22 @@ public class MainPage1Frag extends Fragment {
         });
 
 
+        bestViewAdapter = new MainPage1FragBestViewAdapter(getActivity().getApplicationContext(), items);
+        viewPager.setAdapter(bestViewAdapter);
+        viewPager.setInterval(3000);
+        viewPager.startAutoScroll();
+
+
         return view;
     }//onCreate
 
-
     @Override
-    public void onResume() {
-        super.onResume();
-    }//onresume
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
+    public void onStart() {
+        super.onStart();
+        reedRSS();
 
     }
+
 
     public void reedRSS() {
         try {
@@ -184,14 +182,7 @@ public class MainPage1Frag extends Fragment {
             super.onProgressUpdate(values);
 
 
-            bestViewAdapter = new MainPage1FragBestViewAdapter(getActivity().getApplicationContext(), items);
-            viewPager.setAdapter(bestViewAdapter);
-            viewPager.setInterval(3000);
-            viewPager.startAutoScroll();
-            synchronized (this) {
-                bestViewAdapter.notifyDataSetChanged();
-            }
-
+            bestViewAdapter.notifyDataSetChanged();
 
 
 //           Runnable notifyDataChange  = new Runnable() {

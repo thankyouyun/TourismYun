@@ -61,18 +61,13 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="최근 본 기록을 보여주는 곳입니다.. 준비중입니다.. \ncoming soon" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recent_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#cccccc"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        app:spanCount="2">
+        app:spanCount="3">
 
     </android.support.v7.widget.RecyclerView>
 
