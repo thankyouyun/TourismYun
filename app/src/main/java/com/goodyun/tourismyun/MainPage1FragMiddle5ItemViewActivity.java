@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainPage1FragMiddle5ItemViewActivity extends AppCompatActivity {
-    String id, addr, mapX, mapY;
+    String id,img, addr, mapX, mapY;
 
     TextView tvOver, tvSubOver, tvMainTitle, tvOverTitle, tvSubTitle;
     MainPage1FragMiddle5ItemVIewItems item;

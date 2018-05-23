@@ -83,6 +83,7 @@ public class MainPage1FragMiddle4Adapter extends RecyclerView.Adapter {
                     String id = items.get(getLayoutPosition()).getId();
                     Intent intent = new Intent(context,MainPage1FragMiddle4ItemViewActivity.class);
                     intent.putExtra("Id",id);
+                    intent.putExtra("Img",items.get(getLayoutPosition()).getImg());
                     context.startActivity(intent);
 
                 }

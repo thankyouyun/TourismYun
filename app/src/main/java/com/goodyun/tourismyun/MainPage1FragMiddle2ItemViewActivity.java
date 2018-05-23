@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
-    String id, telName, addr;
+    String id,img, telName, addr;
 
     TextView tvOver, tvTel, tvSubOver, tvInforName;
     MainPage1FragMiddle2ItemVIewItems item;
@@ -51,7 +51,7 @@ public class MainPage1FragMiddle2ItemViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_page1_frag_middle2_item_view);
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
-
+        img = intent.getStringExtra("Img");
         reedRSS();
         reedRSSImgMenu();
         reedSubInfor();

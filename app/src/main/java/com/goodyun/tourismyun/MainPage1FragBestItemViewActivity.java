@@ -62,7 +62,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
     GoogleMap gmap;
     double lat, lon, stlat, stlon, arrlat, arrlon, stAddr, arrAddr;
     LocationManager locationManager;
-
+    int typeSet;
     String st, arrival;
 
     LinearLayout dialogKmap, dialogGmap;
@@ -82,6 +82,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
 
         mapX = intent.getStringExtra("MapX");
         mapY = intent.getStringExtra("MapY");
+        typeSet = 25;
         spAdapter = new ArrayAdapter<String>(this, R.layout.spinner_selected, spinnerItem);
         spAdapter.add("현재위치");
 

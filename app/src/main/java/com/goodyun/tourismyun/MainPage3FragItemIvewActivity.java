@@ -33,7 +33,7 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainPage3FragItemIvewActivity extends AppCompatActivity {
 
-    String id, addr, title;
+    String id,img, addr, title;
 
 
     TextView tvOver, tvSubOver, tvOverTitle, tvSubTitle, tvTel;
@@ -60,7 +60,7 @@ public class MainPage3FragItemIvewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
-
+        img = intent.getStringExtra("Img");
         reedRSS();
         reedInforSub();
         viewPager = findViewById(R.id.item_view_auto_tour);

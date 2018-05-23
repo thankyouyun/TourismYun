@@ -65,18 +65,9 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-
-
-
-
+                    Intent intent = new Intent(context,MainPage1FragMiddle1ItemViewActivity.class);
+                    intent.putExtra("Id",items.get(getLayoutPosition()).getId());
+                    context.startActivity(intent);
 
                 }
             });

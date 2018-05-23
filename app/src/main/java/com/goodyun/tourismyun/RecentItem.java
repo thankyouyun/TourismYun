@@ -1,9 +1,40 @@
 package com.goodyun.tourismyun;
 
-public class RecentItem {
+import java.io.Serializable;
+
+public class RecentItem implements Serializable {
     String id;
     String img;
-    String type;
+    int type;
+    int no;
+
+    public RecentItem() {
+    }
+
+    
+
+    public RecentItem(String id, String img, int type, int no) {
+        this.id = id;
+        this.img = img;
+        this.type = type;
+        this.no = no;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getId() {
         return id;
@@ -21,15 +52,8 @@ public class RecentItem {
         this.img = img;
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public RecentItem(String id, String img, String type) {
+    public RecentItem(String id, String img, int type) {
         this.id = id;
         this.img = img;
         this.type = type;

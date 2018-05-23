@@ -17,8 +17,8 @@ public class RecentFrag extends Fragment {
     ImageView ivSearch;
     RecyclerView recyclerView;
     RecentFragAdapter adapter;
-    ArrayList<RecentItem> items = new ArrayList<>();
-
+    ArrayList<RecentItem> items;
+    LoadSQLlite loadSQLlite;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,20 +32,21 @@ public class RecentFrag extends Fragment {
             }
         });
 
-        recyclerView = view.findViewById(R.id.recycler);
-        adapter = new RecentFragAdapter(getActivity().getApplicationContext(),items);
+        loadSQLlite = new LoadSQLlite(getActivity(), "test.db", null, 1);
+        items = loadSQLlite.getResult();
+
+        recyclerView = view.findViewById(R.id.recent_recycler);
+        adapter = new RecentFragAdapter(getActivity(),items);
         recyclerView.setAdapter(adapter);
-
-
 
 
         return view;
     }
 
 
-
-
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
 }

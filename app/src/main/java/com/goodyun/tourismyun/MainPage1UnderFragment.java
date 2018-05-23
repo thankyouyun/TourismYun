@@ -39,10 +39,15 @@ public class MainPage1UnderFragment extends Fragment {
         lv.setAdapter(underAdapter);
 
 
-        reedRSS();
-
         return view;
     }//on
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        reedRSS();
+
+    }
 
     @Override
     public void onPause() {
@@ -184,27 +189,6 @@ public class MainPage1UnderFragment extends Fragment {
             underAdapter.notifyDataSetChanged();
             setListViewHeightBasedOnChildren(lv);
 
-//            Runnable notifyDataChange  = new Runnable() {
-//               @Override
-//               public void run() {
-//                   underAdapter.notifyDataSetChanged();
-//                   setListViewHeightBasedOnChildren(lv);
-//                   synchronized (this){
-//                       this.notify();
-//                   }
-//               }
-//           };//s1
-//
-//            synchronized (notifyDataChange){
-//                getActivity().runOnUiThread(notifyDataChange);
-//                try{
-//                    notifyDataChange.wait();
-//
-//                }catch (Exception e){
-//
-//                }
-//
-//            }//s2
 
         }//pro
 

@@ -8,8 +8,8 @@
         android:id="@+id/recent_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/korea"/>
-
+        android:src="@drawable/korea"
+        android:layout_margin="8dp"/>
 
 
 </RelativeLayout>

@@ -36,7 +36,7 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainPage1FragMiddle6ItemViewActivity extends AppCompatActivity {
 
-    String id, typeId, addr,title, urlAddr;
+    String id, img,typeId, addr,title, urlAddr;
 
 
     TextView tvOver, tvSubOver, tvOverTitle, tvSubTitle, tvTel;

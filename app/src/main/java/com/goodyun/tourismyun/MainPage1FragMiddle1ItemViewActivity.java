@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainPage1FragMiddle1ItemViewActivity extends AppCompatActivity {
-    String id, img,homePage, title;
+    String id, img, homePage, title;
 
 
     TextView tvOver, tvOverTitle, tvMainTitle, tvTel, tvSubOver, tvSubTitle;
@@ -47,14 +48,24 @@ public class MainPage1FragMiddle1ItemViewActivity extends AppCompatActivity {
     ArrayList<String> itemImg = new ArrayList<>();
     GoogleMap gmap;
     double lat, lon;
+
+
+    LoadSQLlite loadSQLlite;
+    int typeSet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page1_frag_middle1_item_view);
 
+        loadSQLlite = new LoadSQLlite(this, "test.db", null, 1);
+        typeSet = 12;
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
         img = intent.getStringExtra("Img");
+
+        loadSQLlite.insert(id, img, typeSet);
+
 
         reedRSS();
         reedRSSImgMenu();
@@ -441,9 +452,8 @@ public class MainPage1FragMiddle1ItemViewActivity extends AppCompatActivity {
             homePage = item.getHomePage();
 
 
-
             title = item.getTitle();
-            if(item.getMapY()!=null){
+            if (item.getMapY() != null) {
                 lat = Double.parseDouble(item.getMapY());
                 lon = Double.parseDouble(item.getMapX());
 
