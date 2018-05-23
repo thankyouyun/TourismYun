@@ -149,60 +149,63 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        if (st.equals(arrival)) {
+            Toast.makeText(this, "출발지와 도착지를 다르게 입력해주세요", Toast.LENGTH_SHORT).show();
+        } else {
 
 
-        //dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            //dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_map_custom, null);
-        builder.setView(view);
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.dialog_map_custom, null);
+            builder.setView(view);
 
-        builder.setPositiveButton("닫기", null);
+            builder.setPositiveButton("닫기", null);
 
-        final AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+            final AlertDialog dialog = builder.create();
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
 
-        dialogGmap = view.findViewById(R.id.dialog_gmap);
-        dialogKmap = view.findViewById(R.id.dialog_kmap);
-
-
-        //구글맵 열기
-        dialogGmap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                dialog.dismiss();
-                String uri = "http://maps.google.com/maps?saddr=" + stlat + "," + stlon + "&daddr=" + arrlat + "," + arrlon + "&hl=ko";
-                Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                it.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(it);
+            dialogGmap = view.findViewById(R.id.dialog_gmap);
+            dialogKmap = view.findViewById(R.id.dialog_kmap);
 
 
-            }
-        });
+            //구글맵 열기
+            dialogGmap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-
-        //카카오맵 열기
-        dialogKmap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                try {
                     dialog.dismiss();
-                    String url = "daummaps://route?sp=" + stlat + "," + stlon + "&ep=" + arrlat + "," + arrlon + "&by=PUBLICTRANSIT";
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                } catch (Exception e) {
-                    dialog.dismiss();
-                    String url = "market://details?id=net.daum.android.map";
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                    String uri = "http://maps.google.com/maps?saddr=" + stlat + "," + stlon + "&daddr=" + arrlat + "," + arrlon + "&hl=ko";
+                    Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    it.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                    startActivity(it);
+
+
                 }
+            });
 
-            }
-        });
 
+            //카카오맵 열기
+            dialogKmap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    try {
+                        dialog.dismiss();
+                        String url = "daummaps://route?sp=" + stlat + "," + stlon + "&ep=" + arrlat + "," + arrlon + "&by=PUBLICTRANSIT";
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                    } catch (Exception e) {
+                        dialog.dismiss();
+                        String url = "market://details?id=net.daum.android.map";
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                    }
+
+                }
+            });
+        }
 
     }//clickRoad
 
