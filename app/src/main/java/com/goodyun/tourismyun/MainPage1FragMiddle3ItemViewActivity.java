@@ -49,7 +49,7 @@ public class MainPage1FragMiddle3ItemViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page1_frag_middle3_item_view);
+        setContentView(R.layout.main_page1_frag_middle3_item_view);
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");
         img = intent.getStringExtra("Img");

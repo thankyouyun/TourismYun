@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -17,6 +19,7 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
     Context context;
     ArrayList<RecentItem> items;
     Intent intent;
+    ArrayList<String> deItems = new ArrayList<>();
 
     public RecentFragAdapter(Context context, ArrayList<RecentItem> items) {
         this.context = context;
@@ -40,6 +43,7 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
 
         RecentItem item = items.get(position);
 
+
         Glide.with(context).load(item.getImg()).into(vh.iv);
 
     }
@@ -52,11 +56,14 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
 
     class VH extends RecyclerView.ViewHolder {
         ImageView iv;
-
+        CheckBox cb;
+        LoadSQLlite loadSQLlite;
 
         public VH(final View itemView) {
             super(itemView);
             iv = itemView.findViewById(R.id.recent_iv);
+            cb = itemView.findViewById(R.id.recent_cb);
+            loadSQLlite = new LoadSQLlite(context, "test.db", null, 1);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -94,12 +101,24 @@ public class RecentFragAdapter extends RecyclerView.Adapter {
                     intent.putExtra("Id", items.get(getLayoutPosition()).getId());
                     context.startActivity(intent);
 
+                }
+            });//clickListener
+
+            cb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (cb.isChecked() == true) {
+                        items.get(getLayoutPosition()).setSel(true);
+                    } else {
+                        items.get(getLayoutPosition()).setSel(false);
+                    }
 
                 }
-            });
+            });//cb리스너
 
 
-        }
-    }
+        }//vh
+    }//viewholder
 
 }

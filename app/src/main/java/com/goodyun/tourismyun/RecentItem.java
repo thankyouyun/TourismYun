@@ -7,6 +7,23 @@ public class RecentItem implements Serializable {
     String img;
     int type;
     int no;
+    boolean sel=false;
+
+    public RecentItem(String id, String img, int type, int no, boolean sel) {
+        this.id = id;
+        this.img = img;
+        this.type = type;
+        this.no = no;
+        this.sel = sel;
+    }
+
+    public boolean isSel() {
+        return sel;
+    }
+
+    public void setSel(boolean sel) {
+        this.sel = sel;
+    }
 
     public RecentItem() {
     }

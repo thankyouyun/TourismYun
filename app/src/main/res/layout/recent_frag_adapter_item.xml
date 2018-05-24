@@ -10,6 +10,13 @@
         android:layout_height="match_parent"
         android:src="@drawable/korea"
         android:layout_margin="4dp"/>
+    <CheckBox
+        android:id="@+id/recent_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:checked="false"
+        android:layout_marginRight="8dp"/>
 
 
 </RelativeLayout>

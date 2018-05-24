@@ -13,7 +13,7 @@ public class MainPage1FragBestItemViewOverActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page1_frag_best_item_view_over);
+        setContentView(R.layout.main_page1_frag_best_item_view_over);
 
         tvTitle = findViewById(R.id.item_over_tv_title);
         tvTitle.setText(getIntent().getStringExtra("Title"));

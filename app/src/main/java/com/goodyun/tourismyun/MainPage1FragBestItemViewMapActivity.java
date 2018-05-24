@@ -30,7 +30,7 @@ public class MainPage1FragBestItemViewMapActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page1_frag_best_item_view_map);
+        setContentView(R.layout.main_page1_frag_best_item_view_map);
 
         title = getIntent().getStringExtra("Title");
 

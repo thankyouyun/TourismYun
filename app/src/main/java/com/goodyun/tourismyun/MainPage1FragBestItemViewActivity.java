@@ -71,7 +71,7 @@ public class MainPage1FragBestItemViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page1_frag_best_item_view);
+        setContentView(R.layout.main_page1_frag_best_item_view);
 
 
         Intent intent = getIntent();

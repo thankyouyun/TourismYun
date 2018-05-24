@@ -52,7 +52,7 @@ public class MainPage3FragItemViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page3_frag_item_view);
+        setContentView(R.layout.main_page3_frag_item_view);
 
         tvOverTitle = findViewById(R.id.item_view_tv_more_infor_title);
         tvSubTitle = findViewById(R.id.item_view_tv_sub_infor_title);

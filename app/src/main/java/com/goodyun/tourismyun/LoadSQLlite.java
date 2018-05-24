@@ -35,6 +35,8 @@ public class LoadSQLlite extends SQLiteOpenHelper {
         db.close();
     }
 
+
+
     ArrayList<RecentItem> items = new ArrayList<>();
 
     public ArrayList<RecentItem> getResult() {
@@ -67,6 +69,15 @@ public class LoadSQLlite extends SQLiteOpenHelper {
         db.execSQL("delete from "+tableName);
         db.close();
     }
+
+
+    public void selectedDelete(String id){
+        SQLiteDatabase db = getReadableDatabase();
+        db.execSQL("delete from "+tableName+" where id = '"+id+"'");
+        db.close();
+    }
+
+
 
 
 }

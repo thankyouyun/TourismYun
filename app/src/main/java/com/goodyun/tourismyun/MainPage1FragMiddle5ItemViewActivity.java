@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.GoogleMap;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -36,7 +34,7 @@ public class MainPage1FragMiddle5ItemViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page1_frag_middle5_item_view);
+        setContentView(R.layout.main_page1_frag_middle5_item_view);
 
         Intent intent = getIntent();
         id = intent.getStringExtra("Id");

@@ -1,8 +1,7 @@
 package com.goodyun.tourismyun;
 
 public class MainPage1FragMiddle1ItemVIewItems {
-
-
+    String id;
     String img;
     String mapX, mapY;
     String overView;
@@ -38,6 +37,14 @@ public class MainPage1FragMiddle1ItemVIewItems {
         this.overView = overView;
         this.title = title;
         this.homePage = homePage;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFee() {

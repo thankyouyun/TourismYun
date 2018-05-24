@@ -106,7 +106,7 @@ public class MainPage1UnderAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 try {
-                    Thread.sleep(800);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

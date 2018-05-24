@@ -9,7 +9,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -54,7 +53,7 @@ public class MainPage1FragMiddle6ItemViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main_page1_frag_middle6_item_view);
+        setContentView(R.layout.main_page1_frag_middle6_item_view);
 
         tvOverTitle = findViewById(R.id.item_view_tv_more_infor_title);
         tvSubTitle = findViewById(R.id.item_view_tv_sub_infor_title);
